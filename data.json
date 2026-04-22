@@ -28,19 +28,19 @@
       "otPts": 0
     },
     "Necas": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Suzuki": {
       "pts": 3,
-      "otPts": 0
-    },
-    "Caufield": {
-      "pts": 1,
       "otPts": 1
     },
+    "Caufield": {
+      "pts": 3,
+      "otPts": 0
+    },
     "Robertson": {
-      "pts": 0,
+      "pts": 2,
       "otPts": 0
     },
     "Aho": {
@@ -52,7 +52,7 @@
       "otPts": 0
     },
     "Hagel": {
-      "pts": 1,
+      "pts": 4,
       "otPts": 0
     },
     "Svechnikov": {
@@ -60,7 +60,7 @@
       "otPts": 0
     },
     "Demidov": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Bouchard": {
@@ -84,7 +84,7 @@
       "otPts": 0
     },
     "Thompson": {
-      "pts": 0,
+      "pts": 3,
       "otPts": 0
     },
     "Stutzle": {
@@ -92,11 +92,11 @@
       "otPts": 0
     },
     "Batherson": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Guenther": {
-      "pts": 0,
+      "pts": 2,
       "otPts": 0
     },
     "Savoie": {
@@ -104,15 +104,15 @@
       "otPts": 0
     },
     "Slafkovsky": {
-      "pts": 0,
-      "otPts": 0
+      "pts": 3,
+      "otPts": 1
     },
     "Ehlers": {
-      "pts": 5,
-      "otPts": 0
+      "pts": 1,
+      "otPts": 1
     },
     "Konecny": {
-      "pts": 0,
+      "pts": 2,
       "otPts": 0
     },
     "Schmaltz": {
@@ -120,19 +120,19 @@
       "otPts": 0
     },
     "Dahlin": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Hutson": {
-      "pts": 0,
-      "otPts": 0
+      "pts": 1,
+      "otPts": 1
     },
     "Johnston": {
-      "pts": 0,
+      "pts": 3,
       "otPts": 0
     },
     "Guentzel": {
-      "pts": 0,
+      "pts": 4,
       "otPts": 0
     }
   }
