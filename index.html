@@ -92,20 +92,16 @@ tbody td{padding:10px 12px;font-size:14px;}
 .spin-big{width:40px;height:40px;border:3px solid rgba(245,166,35,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
 
 .err-box{background:rgba(200,16,46,.1);border:1px solid var(--red);border-radius:8px;padding:16px 20px;color:#ff6b7a;font-size:14px;margin-bottom:16px;line-height:1.6;}
-.err-box a{color:var(--gold2);text-decoration:underline;}
 
-/* SETUP INSTRUCTIONS */
-.setup-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
-.setup-box h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:16px;}
-.setup-step{display:flex;gap:14px;margin-bottom:16px;}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+/* INFO PAGE */
+.info-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
+.info-box h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.info-step{display:flex;gap:14px;margin-bottom:16px;}
+.step-icon{width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 .step-body{font-size:14px;line-height:1.7;color:#cdd5e0;}
 .step-body strong{color:#fff;}
 .step-body code{background:rgba(255,255,255,.1);padding:2px 7px;border-radius:4px;font-family:monospace;font-size:13px;color:var(--gold2);}
-.sheet-url-input{width:100%;background:var(--navy2);border:1px solid var(--border2);border-radius:6px;color:#fff;font-family:'Barlow',sans-serif;font-size:14px;padding:10px 14px;margin-top:8px;}
-.sheet-url-input:focus{outline:none;border-color:var(--gold);}
-.connect-btn{background:var(--gold);color:var(--navy);border:none;padding:10px 24px;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-top:12px;letter-spacing:1px;text-transform:uppercase;transition:all .15s;}
-.connect-btn:hover{background:var(--gold2);}
+.api-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.3);color:#1db954;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;margin-bottom:16px;}
 
 @media(max-width:600px){
   .hdr{padding:12px 16px;}.main{padding:14px 16px;}.tabs{padding:0 12px;}
@@ -131,12 +127,12 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tab active" onclick="showTab('standings',this)">🏆 Standings</div>
   <div class="tab" onclick="showTab('players',this)">⛸ Players</div>
   <div class="tab" onclick="showTab('picks',this)">📋 All Picks</div>
-  <div class="tab" onclick="showTab('setup',this)">⚙️ Setup</div>
+  <div class="tab" onclick="showTab('info',this)">ℹ️ How It Works</div>
 </nav>
 
 <div class="status-bar">
-  <div class="dot" id="statusDot"></div>
-  <span id="statusText">Connecting to Google Sheet...</span>
+  <div class="dot loading" id="statusDot"></div>
+  <span id="statusText">Loading stats...</span>
 </div>
 
 <div class="main">
@@ -145,8 +141,8 @@ tbody td{padding:10px 12px;font-size:14px;}
 <div class="page active" id="page-standings">
   <div class="key-bar">
     <div style="display:flex;align-items:center;gap:8px;"><span class="chip chip-reg">1 PT</span> Each playoff point = 1 pool pt</div>
-    <div style="display:flex;align-items:center;gap:8px;"><span class="chip chip-ot">+1 BONUS</span> OT point = 2 pool pts total</div>
-    <div style="font-size:12px;">e.g. Suzuki: 1 reg + 1 OT = <strong style="color:var(--gold)">3 pool pts</strong></div>
+    <div style="display:flex;align-items:center;gap:8px;"><span class="chip chip-ot">+1 BONUS</span> OT goal = 2 pool pts total</div>
+    <div style="font-size:12px;">e.g. Suzuki: 1 reg pt + 1 OT goal = <strong style="color:var(--gold)">3 pool pts</strong></div>
   </div>
   <div class="section-hdr">Pool Standings</div>
   <div class="lb" id="lbContainer">
@@ -168,50 +164,58 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tbl-wrap" id="picksTable"></div>
 </div>
 
-<!-- SETUP -->
-<div class="page" id="page-setup">
-  <div class="setup-box">
-    <h2>🔧 Connect Your Google Sheet</h2>
+<!-- INFO -->
+<div class="page" id="page-info">
+  <div class="info-box">
+    <h2>ℹ️ How This Works</h2>
 
-    <div class="setup-step">
-      <div class="step-num">1</div>
+    <div class="api-badge">
+      <span>🟢</span> Live data — NHL Official API (free, no key required)
+    </div>
+
+    <div class="info-step">
+      <div class="step-icon">1</div>
       <div class="step-body">
-        <strong>Make a copy of the template Google Sheet</strong><br>
-        <a href="https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/copy" target="_blank" style="color:var(--gold2)">Click here to copy the template →</a><br>
-        <span style="font-size:12px;color:var(--silver);">It has all 33 players pre-listed. You just fill in their playoff points and OT points after each game.</span>
+        <strong>Data source</strong><br>
+        Stats are pulled automatically from the official NHL API
+        (<code>api-web.nhle.com</code>). No manual entry needed.
+        Goals, assists, and OT goals are all tracked per player.
       </div>
     </div>
 
-    <div class="setup-step">
-      <div class="step-num">2</div>
+    <div class="info-step">
+      <div class="step-icon">2</div>
       <div class="step-body">
-        <strong>Publish your sheet to the web</strong><br>
-        In your Google Sheet: <code>File → Share → Publish to web</code><br>
-        Choose <code>Sheet1</code> and <code>CSV</code> format, then click <strong>Publish</strong>. Copy the URL it gives you.
+        <strong>Auto-updates every 3 hours</strong><br>
+        A GitHub Action runs <code>fetch_stats.py</code> automatically and
+        commits a fresh <code>data.json</code> to the repo. This page then
+        reads that file. No manual updates required.
       </div>
     </div>
 
-    <div class="setup-step">
-      <div class="step-num">3</div>
+    <div class="info-step">
+      <div class="step-icon">3</div>
       <div class="step-body">
-        <strong>Paste your published CSV URL below</strong><br>
-        <input type="text" class="sheet-url-input" id="sheetUrlInput" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv">
-        <br>
-        <button class="connect-btn" onclick="saveSheetUrl()">Connect Sheet</button>
+        <strong>Scoring rules</strong><br>
+        Each playoff point (goal or assist) = 1 pool point.
+        OT goals get a +1 bonus (so an OT goal = 2 pool pts total).
+        OT goals are detected from play-by-play data automatically.
       </div>
     </div>
 
-    <div class="setup-step">
-      <div class="step-num">4</div>
+    <div class="info-step">
+      <div class="step-icon">4</div>
       <div class="step-body">
-        <strong>Update scores anytime</strong><br>
-        Just edit the Google Sheet after games — change the numbers for <code>Playoff Pts</code> and <code>OT Pts</code> for each player. Hit Refresh on the website and everyone sees the new standings instantly.
+        <strong>Manual refresh</strong><br>
+        Hit the <strong style="color:var(--gold)">↻ Refresh</strong> button
+        anytime to reload the latest <code>data.json</code> from the server.
+        Stats update every 3 hours automatically during the playoffs.
       </div>
     </div>
 
     <div style="margin-top:8px;padding:12px 14px;background:rgba(245,166,35,.08);border-radius:8px;font-size:13px;color:var(--silver);">
-      <strong style="color:var(--gold);">Current sheet URL:</strong><br>
-      <span id="currentSheetUrl" style="word-break:break-all;font-size:12px;">Not set yet</span>
+      <strong style="color:var(--gold);">Last data update:</strong><br>
+      <span id="lastUpdatedDisplay" style="font-size:12px;">—</span>
     </div>
   </div>
 </div>
@@ -254,62 +258,43 @@ const FULL_NAMES = {
 };
 function fn(k){ return FULL_NAMES[k] || k; }
 
-// ─── SHEET CONFIG ─────────────────────────────────────────────────────────────
-const SHEET_KEY = 'nhlpool2026_sheeturl';
-let sheetUrl = localStorage.getItem(SHEET_KEY) || '';
-
 // ─── STATS STATE ──────────────────────────────────────────────────────────────
-let stats = {}; // { playerLastName: { pts, otPts } }
+let stats = {}; // { 'LastName': { pts: N, otPts: N } }
+let lastUpdated = null;
 
 function getS(p){ return stats[p] || {pts:0, otPts:0}; }
 function poolPts(p){ const s=getS(p); return s.pts + s.otPts; }
 function participantTotal(p){ return p.picks.reduce((sum,pick)=>sum+poolPts(pick),0); }
 
-// ─── GOOGLE SHEET FETCH ───────────────────────────────────────────────────────
+// ─── DATA FETCH ───────────────────────────────────────────────────────────────
+// Reads data.json from the same repo, committed automatically by GitHub Actions.
 async function fetchData(){
-  if(!sheetUrl){
-    setStatus('error','No Google Sheet connected yet — go to the Setup tab.');
-    renderAll();
-    return;
-  }
-
-  setStatus('loading','Fetching latest stats from Google Sheet...');
+  setStatus('loading','Fetching latest stats...');
   const btn = document.getElementById('refreshBtn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spin">↻</span> Loading...';
 
-  const proxies = [
-    // Try direct first (works if sheet is truly public)
-    () => fetch(sheetUrl + '&t=' + Date.now()).then(r => { if(!r.ok) throw new Error(); return r.text(); }),
-    // allorigins
-    () => fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(sheetUrl)}&timestamp=${Date.now()}`)
-           .then(r => r.json()).then(j => { if(!j.contents) throw new Error(); return j.contents; }),
-    // corsproxy.io
-    () => fetch(`https://corsproxy.io/?${encodeURIComponent(sheetUrl)}`)
-           .then(r => { if(!r.ok) throw new Error(); return r.text(); }),
-    // thingproxy
-    () => fetch(`https://thingproxy.freeboard.io/fetch/${sheetUrl}`)
-           .then(r => { if(!r.ok) throw new Error(); return r.text(); }),
-  ];
+  try {
+    // Cache-bust so we always get the freshest file
+    const resp = await fetch('./data.json?t=' + Date.now());
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const json = await resp.json();
 
-  let csv = null;
-  for(const tryProxy of proxies){
-    try{
-      csv = await Promise.race([
-        tryProxy(),
-        new Promise((_,reject) => setTimeout(()=>reject(new Error('timeout')), 7000))
-      ]);
-      if(csv && csv.includes('Player')) break;
-      csv = null;
-    } catch(e){ csv = null; continue; }
-  }
+    stats = json.players || {};
+    lastUpdated = json.lastUpdated || null;
 
-  if(csv){
-    parseCSV(csv);
-    const now = new Date();
-    setStatus('ok',`Updated ${now.toLocaleTimeString()} — data from your Google Sheet`);
-  } else {
-    setStatus('error','Could not reach Google Sheet. Try refreshing, or check your sheet URL in Setup.');
+    const ts = lastUpdated
+      ? new Date(lastUpdated).toLocaleString()
+      : 'unknown';
+
+    setStatus('ok', `Updated ${ts} — data from NHL API`);
+
+    const el = document.getElementById('lastUpdatedDisplay');
+    if (el) el.textContent = ts;
+
+  } catch (err) {
+    console.error('Failed to load data.json:', err);
+    setStatus('error', 'Could not load stats. Try refreshing. (Is data.json in your repo?)');
   }
 
   btn.disabled = false;
@@ -317,25 +302,10 @@ async function fetchData(){
   renderAll();
 }
 
-function parseCSV(csv){
-  // Expected columns: Player, Playoff Pts, OT Pts
-  // Row 1 = header, Row 2+ = data
-  const lines = csv.trim().split('\n');
-  stats = {};
-  for(let i=1;i<lines.length;i++){
-    const cols = lines[i].split(',').map(c=>c.trim().replace(/^"|"$/g,''));
-    if(!cols[0]) continue;
-    const lastName = cols[0].trim();
-    const pts = parseInt(cols[1])||0;
-    const otPts = Math.min(parseInt(cols[2])||0, pts);
-    stats[lastName] = {pts, otPts};
-  }
-}
-
 // ─── STATUS BAR ───────────────────────────────────────────────────────────────
 function setStatus(type, text){
   const dot = document.getElementById('statusDot');
-  dot.className = 'dot'+(type==='loading'?' loading':type==='error'?' error':'');
+  dot.className = 'dot' + (type==='loading'?' loading':type==='error'?' error':'');
   document.getElementById('statusText').textContent = text;
 }
 
@@ -377,7 +347,8 @@ function renderStandings(){
       </div>
     </div>`;
   });
-  document.getElementById('lbContainer').innerHTML = html || '<div style="color:var(--silver);padding:20px;">No data yet — connect your Google Sheet in the Setup tab.</div>';
+  document.getElementById('lbContainer').innerHTML = html ||
+    '<div style="color:var(--silver);padding:20px;">No stats yet — playoffs may not have started, or data.json is missing.</div>';
 }
 
 function showDetail(name){
@@ -388,7 +359,7 @@ function showDetail(name){
   <div class="detail-name">${p.name}</div>
   <div class="detail-pts">${total} pool points total</div>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>Group</th><th>Player</th><th>Playoff Pts</th><th>OT Pts</th><th>Pool Pts</th></tr></thead><tbody>`;
+    <thead><tr><th>Group</th><th>Player</th><th>Playoff Pts</th><th>OT Goals</th><th>Pool Pts</th></tr></thead><tbody>`;
   p.picks.forEach((pick,i)=>{
     const s=getS(pick); const pp=poolPts(pick);
     html+=`<tr>
@@ -411,7 +382,7 @@ function renderPlayers(){
   sorted.forEach(({p,s,pp})=>{
     html+=`<div class="p-card${s.otPts>0?' has-ot':''}">
       <div class="p-card-name">${fn(p)}${s.otPts>0?`<span class="ot-tag">+${s.otPts}OT</span>`:''}</div>
-      <div class="p-card-stat">${s.pts} playoff pts · ${s.otPts} OT</div>
+      <div class="p-card-stat">${s.pts} playoff pts · ${s.otPts} OT goals</div>
       <div class="p-card-pts">${pp} <span style="font-size:13px;color:var(--silver);font-weight:400">pool pts</span></div>
     </div>`;
   });
@@ -440,39 +411,16 @@ function renderPicksTable(){
   document.getElementById('picksTable').innerHTML=html;
 }
 
-// ─── SETUP ────────────────────────────────────────────────────────────────────
-function saveSheetUrl(){
-  const val=document.getElementById('sheetUrlInput').value.trim();
-  if(!val){ alert('Please paste your Google Sheet CSV URL first.'); return; }
-  sheetUrl=val;
-  localStorage.setItem(SHEET_KEY, val);
-  document.getElementById('currentSheetUrl').textContent=val;
-  fetchData();
-  showTab('standings', document.querySelectorAll('.tab')[0]);
-}
-
-function loadSetupUI(){
-  document.getElementById('sheetUrlInput').value=sheetUrl||'';
-  document.getElementById('currentSheetUrl').textContent=sheetUrl||'Not set yet';
-}
-
 // ─── TABS ─────────────────────────────────────────────────────────────────────
 function showTab(id,el){
-  if(typeof el==='string') el=null;
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(el) el.classList.add('active');
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  if(id==='setup') loadSetupUI();
 }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-renderAll();
-if(sheetUrl){
-  fetchData();
-} else {
-  setStatus('error','No sheet connected yet — tap the Setup tab to get started.');
-}
+fetchData();
 </script>
 </body>
 </html>
