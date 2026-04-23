@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-23T20:37:55.920Z",
+  "lastUpdated": "2026-04-23T20:44:21.805Z",
   "players": {
     "McDavid": {
       "pts": 0,
@@ -18,7 +18,7 @@
     "Rantanen": {
       "pts": 3,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Makar": {
@@ -60,8 +60,8 @@
     "Robertson": {
       "pts": 5,
       "otPts": 1,
-      "recentPts": 0,
-      "recentOtPts": 0
+      "recentPts": 3,
+      "recentOtPts": 1
     },
     "Aho": {
       "pts": 1,
@@ -72,7 +72,7 @@
     "Hyman": {
       "pts": 1,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Hagel": {
@@ -108,7 +108,7 @@
     "Crosby": {
       "pts": 1,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Stone": {
@@ -150,7 +150,7 @@
     "Savoie": {
       "pts": 1,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Slafkovsky": {
@@ -192,8 +192,8 @@
     "Johnston": {
       "pts": 5,
       "otPts": 1,
-      "recentPts": 0,
-      "recentOtPts": 0
+      "recentPts": 2,
+      "recentOtPts": 1
     },
     "Guentzel": {
       "pts": 4,
