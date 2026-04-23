@@ -53,7 +53,6 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 
 .section-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 
-/* LEADERBOARD */
 .lb{display:flex;flex-direction:column;gap:8px;}
 .lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s;}
 .lb-card:hover{border-color:var(--border2);}
@@ -98,6 +97,15 @@ tbody td{padding:10px 12px;font-size:14px;}
 
 .err-box{background:rgba(200,16,46,.1);border:1px solid var(--red);border-radius:8px;padding:16px 20px;color:#ff6b7a;font-size:14px;margin-bottom:16px;line-height:1.6;}
 
+/* UPDATES TAB */
+.update-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px;transition:border-color .15s;}
+.update-card.has-ot{border-color:var(--gold);}
+.update-avatar{width:40px;height:40px;border-radius:50%;background:rgba(29,185,84,.15);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--green);flex-shrink:0;}
+.update-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;}
+.update-game{font-size:12px;color:var(--silver);margin-top:2px;}
+.update-pts{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;color:var(--gold);margin-left:auto;}
+.update-empty{text-align:center;padding:40px 20px;color:var(--silver);font-size:14px;}
+
 /* INFO PAGE */
 .info-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
 .info-box h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:16px;}
@@ -132,6 +140,7 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tab active" onclick="showTab('standings',this)">🏆 Standings</div>
   <div class="tab" onclick="showTab('players',this)">⛸ Players</div>
   <div class="tab" onclick="showTab('picks',this)">📋 All Picks</div>
+  <div class="tab" onclick="showTab('updates',this)">🔥 Updates</div>
   <div class="tab" onclick="showTab('info',this)">ℹ️ How It Works</div>
 </nav>
 
@@ -169,15 +178,21 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tbl-wrap" id="picksTable"></div>
 </div>
 
+<!-- UPDATES -->
+<div class="page" id="page-updates">
+  <div class="section-hdr" id="updatesHdr">Latest Updates</div>
+  <div class="lb" id="updatesContainer">
+    <div class="update-empty">No changes yet — check back after tonight's games!</div>
+  </div>
+</div>
+
 <!-- INFO -->
 <div class="page" id="page-info">
   <div class="info-box">
     <h2>ℹ️ How This Works</h2>
-
     <div class="api-badge">
       <span>🟢</span> Live data — NHL Official API (free, no key required)
     </div>
-
     <div class="info-step">
       <div class="step-icon">1</div>
       <div class="step-body">
@@ -187,17 +202,15 @@ tbody td{padding:10px 12px;font-size:14px;}
         Goals, assists, and OT goals are all tracked per player.
       </div>
     </div>
-
     <div class="info-step">
       <div class="step-icon">2</div>
       <div class="step-body">
         <strong>Auto-updates every 3 hours</strong><br>
-        A GitHub Action runs <code>fetch_stats.py</code> automatically and
+        A GitHub Action runs <code>fetch_stats.js</code> automatically and
         commits a fresh <code>data.json</code> to the repo. This page then
         reads that file. No manual updates required.
       </div>
     </div>
-
     <div class="info-step">
       <div class="step-icon">3</div>
       <div class="step-body">
@@ -207,7 +220,6 @@ tbody td{padding:10px 12px;font-size:14px;}
         OT goals are detected from play-by-play data automatically.
       </div>
     </div>
-
     <div class="info-step">
       <div class="step-icon">4</div>
       <div class="step-body">
@@ -217,7 +229,6 @@ tbody td{padding:10px 12px;font-size:14px;}
         Stats update every 3 hours automatically during the playoffs.
       </div>
     </div>
-
     <div style="margin-top:8px;padding:12px 14px;background:rgba(245,166,35,.08);border-radius:8px;font-size:13px;color:var(--silver);">
       <strong style="color:var(--gold);">Last data update:</strong><br>
       <span id="lastUpdatedDisplay" style="font-size:12px;">—</span>
@@ -228,7 +239,6 @@ tbody td{padding:10px 12px;font-size:14px;}
 </div><!-- /main -->
 
 <script>
-// ─── POOL PICKS DATA ──────────────────────────────────────────────────────────
 const GROUPS = ['Group 1','Group 2','Group 3','Group 4','Group 5','Group 6','Group 7','Group 8','Group 9','Group 10'];
 
 const PARTICIPANTS = [
@@ -263,24 +273,39 @@ const FULL_NAMES = {
 };
 function fn(k){ return FULL_NAMES[k] || k; }
 
-// ─── STATS STATE ──────────────────────────────────────────────────────────────
-let stats = {}; // { 'LastName': { pts: N, otPts: N } }
+function initials(name){
+  return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+}
+
+let stats = {};
+let prevStats = {};
 let lastUpdated = null;
 
 function getS(p){ return stats[p] || {pts:0, otPts:0}; }
 function poolPts(p){ const s=getS(p); return s.pts + s.otPts; }
 function participantTotal(p){ return p.picks.reduce((sum,pick)=>sum+poolPts(pick),0); }
 
-// ─── DATA FETCH ───────────────────────────────────────────────────────────────
-// Reads data.json from the same repo, committed automatically by GitHub Actions.
+// Load previous stats from localStorage for change detection
+function loadPrevStats(){
+  try {
+    const raw = localStorage.getItem('nhlpool_prev_stats');
+    return raw ? JSON.parse(raw) : {};
+  } catch(e){ return {}; }
+}
+
+function savePrevStats(s){
+  try { localStorage.setItem('nhlpool_prev_stats', JSON.stringify(s)); } catch(e){}
+}
+
 async function fetchData(){
   setStatus('loading','Fetching latest stats...');
   const btn = document.getElementById('refreshBtn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spin">↻</span> Loading...';
 
+  prevStats = loadPrevStats();
+
   try {
-    // Cache-bust so we always get the freshest file
     const resp = await fetch('./data.json?t=' + Date.now());
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const json = await resp.json();
@@ -288,18 +313,18 @@ async function fetchData(){
     stats = json.players || {};
     lastUpdated = json.lastUpdated || null;
 
-    const ts = lastUpdated
-      ? new Date(lastUpdated).toLocaleString()
-      : 'unknown';
-
+    const ts = lastUpdated ? new Date(lastUpdated).toLocaleString() : 'unknown';
     setStatus('ok', `Updated ${ts} — data from NHL API`);
 
     const el = document.getElementById('lastUpdatedDisplay');
     if (el) el.textContent = ts;
 
+    // Save current as prev for next refresh
+    savePrevStats(stats);
+
   } catch (err) {
     console.error('Failed to load data.json:', err);
-    setStatus('error', 'Could not load stats. Try refreshing. (Is data.json in your repo?)');
+    setStatus('error', 'Could not load stats. Try refreshing.');
   }
 
   btn.disabled = false;
@@ -307,21 +332,19 @@ async function fetchData(){
   renderAll();
 }
 
-// ─── STATUS BAR ───────────────────────────────────────────────────────────────
 function setStatus(type, text){
   const dot = document.getElementById('statusDot');
   dot.className = 'dot' + (type==='loading'?' loading':type==='error'?' error':'');
   document.getElementById('statusText').textContent = text;
 }
 
-// ─── RENDER ALL ───────────────────────────────────────────────────────────────
 function renderAll(){
   renderStandings();
   renderPlayers();
   renderPicksTable();
+  renderUpdates();
 }
 
-// ─── STANDINGS ────────────────────────────────────────────────────────────────
 function renderStandings(){
   const sorted = [...PARTICIPANTS]
     .map(p=>({...p, total:participantTotal(p), gp:p.picks.map(pick=>poolPts(pick))}))
@@ -353,7 +376,7 @@ function renderStandings(){
     </div>`;
   });
   document.getElementById('lbContainer').innerHTML = html ||
-    '<div style="color:var(--silver);padding:20px;">No stats yet — playoffs may not have started, or data.json is missing.</div>';
+    '<div style="color:var(--silver);padding:20px;">No stats yet.</div>';
 }
 
 function showDetail(name){
@@ -379,7 +402,6 @@ function showDetail(name){
   document.getElementById('lbContainer').innerHTML=html;
 }
 
-// ─── PLAYERS ──────────────────────────────────────────────────────────────────
 function renderPlayers(){
   const all=[...new Set(PARTICIPANTS.flatMap(p=>p.picks))];
   const sorted=all.map(p=>({p,s:getS(p),pp:poolPts(p)})).sort((a,b)=>b.pp-a.pp);
@@ -394,7 +416,6 @@ function renderPlayers(){
   document.getElementById('playerGrid').innerHTML=html;
 }
 
-// ─── PICKS TABLE ──────────────────────────────────────────────────────────────
 function renderPicksTable(){
   const sorted=[...PARTICIPANTS].sort((a,b)=>participantTotal(b)-participantTotal(a));
   let html=`<table><thead><tr><th>Participant</th>`;
@@ -416,7 +437,53 @@ function renderPicksTable(){
   document.getElementById('picksTable').innerHTML=html;
 }
 
-// ─── TABS ─────────────────────────────────────────────────────────────────────
+function renderUpdates(){
+  // Find players whose pool pts changed since last load
+  const changes = [];
+  const allPlayers = [...new Set(PARTICIPANTS.flatMap(p=>p.picks))];
+
+  allPlayers.forEach(key => {
+    const curr = stats[key] || {pts:0, otPts:0};
+    const prev = prevStats[key] || {pts:0, otPts:0};
+    const currPool = curr.pts + curr.otPts;
+    const prevPool = prev.pts + prev.otPts;
+    const diff = currPool - prevPool;
+    const newOT = curr.otPts > prev.otPts;
+    if (diff > 0) {
+      changes.push({ key, name: fn(key), diff, newOT });
+    }
+  });
+
+  // Sort by biggest gain first
+  changes.sort((a,b) => b.diff - a.diff);
+
+  const ts = lastUpdated ? new Date(lastUpdated).toLocaleString() : '';
+  document.getElementById('updatesHdr').textContent =
+    changes.length > 0
+      ? `🔥 Latest Updates — ${ts}`
+      : `Latest Updates — ${ts}`;
+
+  if (changes.length === 0) {
+    document.getElementById('updatesContainer').innerHTML =
+      `<div class="update-empty">No changes detected since your last refresh.<br><span style="font-size:12px;color:var(--silver);">Hit ↻ Refresh after games to see who scored!</span></div>`;
+    return;
+  }
+
+  let html = '';
+  changes.forEach(({key, name, diff, newOT}) => {
+    const ini = initials(name);
+    html += `<div class="update-card${newOT?' has-ot':''}">
+      <div class="update-avatar">${ini}</div>
+      <div>
+        <div class="update-name">${name}${newOT?`<span class="ot-tag">OT</span>`:''}</div>
+        <div class="update-game">+${diff} pool pt${diff>1?'s':''} since last refresh</div>
+      </div>
+      <div class="update-pts">+${diff}</div>
+    </div>`;
+  });
+  document.getElementById('updatesContainer').innerHTML = html;
+}
+
 function showTab(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(el) el.classList.add('active');
@@ -424,9 +491,8 @@ function showTab(id,el){
   document.getElementById('page-'+id).classList.add('active');
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
 fetchData();
-  if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js');
 }
 </script>
