@@ -180,7 +180,7 @@ async function main() {
     const scorers = await getOtPointScorers(game.id);
     for (const id of scorers) {
       otPlayerIds.add(id);
-      if (new Date(game.date) >= cutoff) {
+      if (game.date >= cutoffStr) {
         recentOtIds.add(id);
       }
     }
