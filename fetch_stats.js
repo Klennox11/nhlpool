@@ -34,7 +34,7 @@ const PLAYER_IDS = {
   Guenther:   8482699,
   Savoie:     8484149,
   Slafkovsky: 8483515,
-  Ehlers:     8477940,
+  Ehlers:     8479550,
   Konecny:    8479550,
   Schmaltz:   8476882,
   Dahlin:     8480787,
