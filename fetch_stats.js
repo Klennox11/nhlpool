@@ -33,7 +33,7 @@ const PLAYER_IDS = {
   Stutzle:    8482116,
   Batherson:  8480208,
   Guenther:   8482699,
-  Savoie:     8484149,
+  Savoie:     8483512,
   Slafkovsky: 8483515,
   Ehlers:     8477940,
   Konecny:    8478439,
