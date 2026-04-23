@@ -304,8 +304,7 @@ async function fetchData(){
     const el = document.getElementById('lastUpdatedDisplay');
     if (el) el.textContent = ts;
 
-    // Save current as prev for next refresh
-    savePrevStats(stats); (err) {
+    } catch (err)  {
     console.error('Failed to load data.json:', err);
     setStatus('error', 'Could not load stats. Try refreshing.');
   }
