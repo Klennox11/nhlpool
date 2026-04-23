@@ -38,9 +38,9 @@ const PLAYER_IDS = {
   Konecny:    8479550,
   Schmaltz:   8476882,
   Dahlin:     8480787,
-  Hutson:     8484967,
-  Johnston:   8482749,
-  Guentzel:   8476924,
+  Hutson:     8483457,
+  Johnston:   8482740,
+  Guentzel:   8477404,
 };
 
 const SEASON    = '20252026';
