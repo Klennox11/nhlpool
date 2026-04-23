@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-23T01:22:57.831Z",
+  "lastUpdated": "2026-04-23T01:29:54.863Z",
   "players": {
     "McDavid": {
       "pts": 0,
@@ -124,15 +124,15 @@
       "otPts": 0
     },
     "Hutson": {
-      "pts": 0,
+      "pts": 2,
       "otPts": 0
     },
     "Johnston": {
-      "pts": 0,
+      "pts": 3,
       "otPts": 0
     },
     "Guentzel": {
-      "pts": 0,
+      "pts": 4,
       "otPts": 0
     }
   }
