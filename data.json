@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-22T22:49:59Z",
+  "lastUpdated": "2026-04-23T01:22:57.831Z",
   "players": {
     "McDavid": {
       "pts": 0,
@@ -33,7 +33,7 @@
     },
     "Suzuki": {
       "pts": 3,
-      "otPts": 1
+      "otPts": 0
     },
     "Caufield": {
       "pts": 3,
@@ -109,10 +109,10 @@
     },
     "Ehlers": {
       "pts": 1,
-      "otPts": 1
+      "otPts": 0
     },
     "Konecny": {
-      "pts": 2,
+      "pts": 0,
       "otPts": 0
     },
     "Schmaltz": {
@@ -120,19 +120,19 @@
       "otPts": 0
     },
     "Dahlin": {
-      "pts": 1,
+      "pts": 0,
       "otPts": 0
     },
     "Hutson": {
-      "pts": 1,
-      "otPts": 1
+      "pts": 0,
+      "otPts": 0
     },
     "Johnston": {
-      "pts": 3,
+      "pts": 0,
       "otPts": 0
     },
     "Guentzel": {
-      "pts": 4,
+      "pts": 0,
       "otPts": 0
     }
   }
