@@ -108,7 +108,10 @@ async function getOtPointScorers(gameId) {
 
 // Get recent points (last 24 hours) from individual game logs
 async function fetchRecentPoints() {
-  const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const cutoffStr = yesterday.toISOString().split("T")[0];
   const recentByName = {};
 
   for (const [name, pid] of Object.entries(PLAYER_IDS)) {
@@ -118,8 +121,8 @@ async function fetchRecentPoints() {
       );
       let recentPts = 0;
       for (const game of data.gameLog || []) {
-        const gameDate = new Date(game.gameDate);
-        if (gameDate >= cutoff) {
+        const gameDate = (game.gameDate || "").slice(0, 10);
+        if (gameDate >= cutoffStr) {
           recentPts += (game.goals || 0) + (game.assists || 0);
         }
       }
@@ -168,7 +171,10 @@ async function main() {
 
   const otPlayerIds   = new Set(); // all-time OT point getters
   const recentOtIds   = new Set(); // OT point getters in last 24hrs
-  const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const cutoffStr = yesterday.toISOString().split("T")[0];
 
   for (const game of games) {
     const scorers = await getOtPointScorers(game.id);
