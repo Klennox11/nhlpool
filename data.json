@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-23T18:17:26.588Z",
+  "lastUpdated": "2026-04-23T19:31:39.178Z",
   "players": {
     "McDavid": {
       "pts": 0,
@@ -100,7 +100,7 @@
       "otPts": 0
     },
     "Savoie": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Slafkovsky": {
