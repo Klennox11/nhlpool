@@ -54,24 +54,18 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .section-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 
 .lb{display:flex;flex-direction:column;gap:8px;}
-.lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s;overflow:hidden;}
+.lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s;}
 .lb-card:hover{border-color:var(--border2);}
 .lb-card.r1{border-color:var(--gold);background:linear-gradient(90deg,rgba(245,166,35,.1),var(--card) 55%);}
 .lb-card.r2{border-color:rgba(192,192,192,.35);background:linear-gradient(90deg,rgba(192,192,192,.06),var(--card) 55%);}
 .lb-card.r3{border-color:rgba(205,127,50,.35);background:linear-gradient(90deg,rgba(205,127,50,.06),var(--card) 55%);}
 .lb-rank{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;text-align:center;color:var(--silver);}
 .r1 .lb-rank{color:var(--gold);}.r2 .lb-rank{color:#c0c0c0;}.r3 .lb-rank{color:#cd7f32;}
+.crown{font-size:16px;display:block;line-height:1;}
 .lb-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;}
 .lb-picks{font-size:12px;color:var(--silver);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.lb-pts{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;color:var(--gold);line-height:1;text-align:right;white-space:nowrap;min-width:55px;}
+.lb-pts{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:900;color:var(--gold);line-height:1;text-align:right;}
 .lb-pts-lbl{font-size:11px;color:var(--silver);letter-spacing:1px;text-transform:uppercase;text-align:right;}
-.crown{font-size:18px;display:block;text-align:center;line-height:1;margin-bottom:2px;}
-.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-.series-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
-.series-teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.series-team{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;}
-.series-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;}
-.series-status{font-size:12px;color:var(--silver);text-align:center;margin-top:4px;}
 .bars{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin-top:8px;}
 .bar{height:5px;border-radius:2px;background:rgba(255,255,255,.07);}
 .bar.got{background:var(--gold);}.bar.ot{background:var(--gold2);}
@@ -102,8 +96,6 @@ tbody td{padding:10px 12px;font-size:14px;}
 .spinner{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;color:var(--silver);gap:16px;}
 .spin-big{width:40px;height:40px;border:3px solid rgba(245,166,35,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
 
-.err-box{background:rgba(200,16,46,.1);border:1px solid var(--red);border-radius:8px;padding:16px 20px;color:#ff6b7a;font-size:14px;margin-bottom:16px;line-height:1.6;}
-
 /* UPDATES TAB */
 .update-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px;transition:border-color .15s;}
 .update-card.has-ot{border-color:var(--gold);}
@@ -112,6 +104,15 @@ tbody td{padding:10px 12px;font-size:14px;}
 .update-game{font-size:12px;color:var(--silver);margin-top:2px;}
 .update-pts{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;color:var(--gold);margin-left:auto;}
 .update-empty{text-align:center;padding:40px 20px;color:var(--silver);font-size:14px;}
+
+/* SERIES TAB */
+.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.series-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.series-matchup{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.series-team{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;flex:1;}
+.series-team.leader{color:var(--gold2);}
+.series-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;padding:0 12px;}
+.series-status{font-size:12px;color:var(--silver);text-align:center;}
 
 /* INFO PAGE */
 .info-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
@@ -188,14 +189,15 @@ tbody td{padding:10px 12px;font-size:14px;}
 
 <!-- UPDATES -->
 <div class="page" id="page-updates">
-  <div class="section-hdr" id="updatesHdr">Latest Updates</div>
+  <div class="section-hdr" id="updatesHdr">Hot Tonight</div>
   <div class="lb" id="updatesContainer">
     <div class="update-empty">No changes yet — check back after tonight's games!</div>
   </div>
 </div>
 
+<!-- SERIES -->
 <div class="page" id="page-series">
-  <div class="section-hdr">2026 Playoff Series</div>
+  <div class="section-hdr">2026 First Round Series</div>
   <div class="series-grid" id="seriesContainer"></div>
 </div>
 
@@ -203,44 +205,22 @@ tbody td{padding:10px 12px;font-size:14px;}
 <div class="page" id="page-info">
   <div class="info-box">
     <h2>ℹ️ How This Works</h2>
-    <div class="api-badge">
-      <span>🟢</span> Live data — NHL Official API (free, no key required)
-    </div>
+    <div class="api-badge"><span>🟢</span> Live data — NHL Official API (free, no key required)</div>
     <div class="info-step">
       <div class="step-icon">1</div>
-      <div class="step-body">
-        <strong>Data source</strong><br>
-        Stats are pulled automatically from the official NHL API
-        (<code>api-web.nhle.com</code>). No manual entry needed.
-        Goals, assists, and OT goals are all tracked per player.
-      </div>
+      <div class="step-body"><strong>Data source</strong><br>Stats are pulled automatically from the official NHL API (<code>api-web.nhle.com</code>). No manual entry needed.</div>
     </div>
     <div class="info-step">
       <div class="step-icon">2</div>
-      <div class="step-body">
-        <strong>Auto-updates every 3 hours</strong><br>
-        A GitHub Action runs <code>fetch_stats.js</code> automatically and
-        commits a fresh <code>data.json</code> to the repo. This page then
-        reads that file. No manual updates required.
-      </div>
+      <div class="step-body"><strong>Auto-updates every 3 hours</strong><br>A GitHub Action runs <code>fetch_stats.js</code> automatically and commits a fresh <code>data.json</code> to the repo.</div>
     </div>
     <div class="info-step">
       <div class="step-icon">3</div>
-      <div class="step-body">
-        <strong>Scoring rules</strong><br>
-        Each playoff point (goal or assist) = 1 pool point.
-        OT goals get a +1 bonus (so an OT goal = 2 pool pts total).
-        OT goals are detected from play-by-play data automatically.
-      </div>
+      <div class="step-body"><strong>Scoring rules</strong><br>Each playoff point (goal or assist) = 1 pool point. OT goals get a +1 bonus (so an OT goal = 2 pool pts total).</div>
     </div>
     <div class="info-step">
       <div class="step-icon">4</div>
-      <div class="step-body">
-        <strong>Manual refresh</strong><br>
-        Hit the <strong style="color:var(--gold)">↻ Refresh</strong> button
-        anytime to reload the latest <code>data.json</code> from the server.
-        Stats update every 3 hours automatically during the playoffs.
-      </div>
+      <div class="step-body"><strong>Manual refresh</strong><br>Hit the <strong style="color:var(--gold)">↻ Refresh</strong> button anytime to reload the latest stats.</div>
     </div>
     <div style="margin-top:8px;padding:12px 14px;background:rgba(245,166,35,.08);border-radius:8px;font-size:13px;color:var(--silver);">
       <strong style="color:var(--gold);">Last data update:</strong><br>
@@ -249,7 +229,7 @@ tbody td{padding:10px 12px;font-size:14px;}
   </div>
 </div>
 
-</div><!-- /main -->
+</div>
 
 <script>
 const GROUPS = ['Group 1','Group 2','Group 3','Group 4','Group 5','Group 6','Group 7','Group 8','Group 9','Group 10'];
@@ -285,10 +265,7 @@ const FULL_NAMES = {
   Hutson:'Lane Hutson',Johnston:'Wyatt Johnston',Guentzel:'Jake Guentzel',
 };
 function fn(k){ return FULL_NAMES[k] || k; }
-
-function initials(name){
-  return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-}
+function initials(name){ return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
 
 let stats = {};
 let lastUpdated = null;
@@ -302,27 +279,20 @@ async function fetchData(){
   const btn = document.getElementById('refreshBtn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spin">↻</span> Loading...';
-
   try {
     const resp = await fetch('./data.json?t=' + Date.now());
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const json = await resp.json();
-
     stats = json.players || {};
     lastUpdated = json.lastUpdated || null;
-
     const ts = lastUpdated ? new Date(lastUpdated).toLocaleString() : 'unknown';
     setStatus('ok', `Updated ${ts} — data from NHL API`);
-
     const el = document.getElementById('lastUpdatedDisplay');
     if (el) el.textContent = ts;
-
-    // Save current as prev for next refresh
-    savePrevStats(stats); (err) {
+  } catch (err) {
     console.error('Failed to load data.json:', err);
     setStatus('error', 'Could not load stats. Try refreshing.');
   }
-
   btn.disabled = false;
   btn.innerHTML = '↻ Refresh';
   renderAll();
@@ -335,18 +305,17 @@ function setStatus(type, text){
 }
 
 function renderAll(){
-  renderSeries();
   renderStandings();
   renderPlayers();
   renderPicksTable();
   renderUpdates();
+  renderSeries();
 }
 
 function renderStandings(){
   const sorted = [...PARTICIPANTS]
     .map(p=>({...p, total:participantTotal(p), gp:p.picks.map(pick=>poolPts(pick))}))
     .sort((a,b)=>b.total-a.total);
-
   let html='';
   sorted.forEach((p,idx)=>{
     const rank=idx+1;
@@ -359,8 +328,9 @@ function renderStandings(){
       const hasOT=getS(p.picks[i]).otPts>0;
       return `<div class="bar${pp>0?(hasOT?' ot':' got'):''}" title="${GROUPS[i]}: ${pp}pt"></div>`;
     }).join('');
+    const crownHtml = rank===1 ? '<span class="crown">👑</span>' : '';
     html+=`<div class="lb-card${rc}" onclick="showDetail('${p.name}')">
-      <div class="lb-rank">${rank}</div>
+      <div class="lb-rank">${crownHtml}${rank}</div>
       <div>
         <div class="lb-name">${p.name}</div>
         <div class="lb-picks">${summary}</div>
@@ -435,31 +405,22 @@ function renderPicksTable(){
 }
 
 function renderUpdates(){
-  // Show top 5 scorers from last 24 hours using recentPts from data.json
   const allPlayers = [...new Set(PARTICIPANTS.flatMap(p=>p.picks))];
   const hot = [];
-
   allPlayers.forEach(key => {
     const s = stats[key] || {pts:0, otPts:0, recentPts:0, recentOtPts:0};
     const recentPool = (s.recentPts || 0) + (s.recentOtPts || 0);
-    if (recentPool > 0) {
-      hot.push({ key, name: fn(key), recentPool, recentOtPts: s.recentOtPts || 0 });
-    }
+    if (recentPool > 0) hot.push({ key, name: fn(key), recentPool, recentOtPts: s.recentOtPts || 0 });
   });
-
   hot.sort((a,b) => b.recentPool - a.recentPool);
   const top5 = hot.slice(0, 5);
-
   const ts = lastUpdated ? new Date(lastUpdated).toLocaleString() : '';
-  document.getElementById('updatesHdr').textContent =
-    top5.length > 0 ? `🔥 Hot Tonight — ${ts}` : `Hot Tonight — ${ts}`;
-
+  document.getElementById('updatesHdr').textContent = top5.length > 0 ? `🔥 Hot Tonight — ${ts}` : `Hot Tonight — ${ts}`;
   if (top5.length === 0) {
     document.getElementById('updatesContainer').innerHTML =
       `<div class="update-empty">No scoring in the last 24 hours yet.<br><span style="font-size:12px;color:var(--silver);">Check back after tonight's games!</span></div>`;
     return;
   }
-
   let html = '';
   top5.forEach(({key, name, recentPool, recentOtPts}) => {
     const ini = initials(name);
@@ -476,33 +437,31 @@ function renderUpdates(){
 }
 
 function renderSeries(){
-  // Hardcoded 2026 first round series — update as series progress
+  // Update these manually as series progress!
   const SERIES = [
-    {away:"Ottawa",home:"Carolina",awayW:0,homeW:2,status:"CAR leads 2-0"},
-    {away:"Philadelphia",home:"Pittsburgh",awayW:3,homeW:0,status:"PHI leads 3-0"},
-    {away:"Boston",home:"Buffalo",awayW:1,homeW:1,status:"Series tied 1-1"},
-    {away:"Montreal",home:"Tampa Bay",awayW:1,homeW:1,status:"Series tied 1-1"},
-    {away:"LA Kings",home:"Colorado",awayW:0,homeW:2,status:"COL leads 2-0"},
-    {away:"Minnesota",home:"Dallas",awayW:2,homeW:2,status:"Series tied 2-2"},
-    {away:"Utah",home:"Vegas",awayW:1,homeW:1,status:"Series tied 1-1"},
-    {away:"Anaheim",home:"Edmonton",awayW:1,homeW:1,status:"Series tied 1-1"},
+    {away:'Ottawa',   home:'Carolina',  awayW:0, homeW:2, status:'CAR leads 2-0'},
+    {away:'Philadelphia', home:'Pittsburgh', awayW:3, homeW:0, status:'PHI leads 3-0'},
+    {away:'Boston',   home:'Buffalo',   awayW:1, homeW:1, status:'Series tied 1-1'},
+    {away:'Montreal', home:'Tampa Bay', awayW:1, homeW:1, status:'Series tied 1-1'},
+    {away:'LA Kings', home:'Colorado',  awayW:0, homeW:2, status:'COL leads 2-0'},
+    {away:'Minnesota',home:'Dallas',    awayW:2, homeW:2, status:'Series tied 2-2'},
+    {away:'Utah',     home:'Vegas',     awayW:1, homeW:1, status:'Series tied 1-1'},
+    {away:'Anaheim',  home:'Edmonton',  awayW:1, homeW:1, status:'Series tied 1-1'},
   ];
-  let html = "";
-  SERIES.forEach(s=>{
+  let html = '';
+  SERIES.forEach(s => {
     const awayLeads = s.awayW > s.homeW;
     const homeLeads = s.homeW > s.awayW;
     html += `<div class="series-card">
-      <div class="series-teams">
-        <span class="series-team" style="color:${awayLeads?"var(--gold2)":"#fff"}">${s.away}</span>
-        <span style="font-size:11px;color:var(--silver);padding:0 8px;">VS</span>
-        <span class="series-team" style="text-align:right;color:${homeLeads?"var(--gold2)":"#fff"}">${s.home}</span>
+      <div class="series-matchup">
+        <span class="series-team${awayLeads?' leader':''}">${s.away}</span>
+        <span class="series-score">${s.awayW}–${s.homeW}</span>
+        <span class="series-team${homeLeads?' leader':''}" style="text-align:right">${s.home}</span>
       </div>
-      <div class="series-score">${s.awayW} — ${s.homeW}</div>
       <div class="series-status">${s.status}</div>
     </div>`;
   });
-  const el = document.getElementById("seriesContainer");
-  if(el) el.innerHTML = html;
+  document.getElementById('seriesContainer').innerHTML = html;
 }
 
 function showTab(id,el){
