@@ -54,7 +54,7 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .section-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 
 .lb{display:flex;flex-direction:column;gap:8px;}
-.lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:10px;cursor:pointer;transition:border-color .15s;overflow:hidden;}
+.lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:10px;cursor:pointer;transition:border-color .15s;overflow:hidden;}
 .lb-card:hover{border-color:var(--border2);}
 .lb-card.r1{border-color:var(--gold);background:linear-gradient(90deg,rgba(245,166,35,.1),var(--card) 55%);}
 .lb-card.r2{border-color:rgba(192,192,192,.35);background:linear-gradient(90deg,rgba(192,192,192,.06),var(--card) 55%);}
@@ -64,7 +64,7 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .crown{font-size:16px;display:block;line-height:1;}
 .lb-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;}
 .lb-picks{font-size:12px;color:var(--silver);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.lb-pts{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;color:var(--gold);line-height:1;text-align:right;white-space:nowrap;flex-shrink:0;}
+.lb-pts{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;color:var(--gold);line-height:1;text-align:right;white-space:nowrap;}
 .lb-pts-lbl{font-size:11px;color:var(--silver);letter-spacing:1px;text-transform:uppercase;text-align:right;}
 .bars{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin-top:8px;}
 .bar{height:5px;border-radius:2px;background:rgba(255,255,255,.07);}
@@ -126,7 +126,7 @@ tbody td{padding:10px 12px;font-size:14px;}
 
 @media(max-width:600px){
   .hdr{padding:12px 16px;}.main{padding:14px 16px;}.tabs{padding:0 12px;}
-  .lb-card{grid-template-columns:36px 1fr auto;gap:8px;padding:12px 14px;}
+  .lb-card{grid-template-columns:36px minmax(0,1fr) auto;gap:8px;padding:12px 14px;}
   .lb-rank{font-size:20px;}.lb-pts{font-size:26px;}
 }
 </style>
@@ -150,6 +150,7 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tab" onclick="showTab('picks',this)">📋 All Picks</div>
   <div class="tab" onclick="showTab('updates',this)">🔥 Updates</div>
   <div class="tab" onclick="showTab('series',this)">🏒 Series</div>
+  <div class="tab" onclick="showTab('cole',this)">🤙 Cole Hayes</div>
   <div class="tab" onclick="showTab('info',this)">ℹ️ How It Works</div>
 </nav>
 
@@ -199,6 +200,16 @@ tbody td{padding:10px 12px;font-size:14px;}
 <div class="page" id="page-series">
   <div class="section-hdr">2026 First Round Series</div>
   <div class="series-grid" id="seriesContainer"></div>
+</div>
+
+<!-- COLE HAYES -->
+<div class="page" id="page-cole">
+  <div class="section-hdr">Cole Hayes</div>
+  <div style="text-align:center;padding:40px 20px;">
+    <img src="Cole.jpg" style="max-width:100%;max-height:70vh;border-radius:12px;border:3px solid var(--gold);box-shadow:0 0 30px rgba(245,166,35,0.3);">
+    <div style="margin-top:20px;font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);">The Man. The Myth. The Legend.</div>
+    <div style="margin-top:8px;font-size:14px;color:var(--silver);">Always there in spirit 🤙</div>
+  </div>
 </div>
 
 <!-- INFO -->
@@ -331,7 +342,7 @@ function renderStandings(){
     const crownHtml = rank===1 ? '<span class="crown">👑</span>' : '';
     html+=`<div class="lb-card${rc}" onclick="showDetail('${p.name}')">
       <div class="lb-rank">${crownHtml}${rank}</div>
-      <div>
+      <div style="min-width:0;">
         <div class="lb-name">${p.name}</div>
         <div class="lb-picks">${summary}</div>
         <div class="bars">${bars}</div>
