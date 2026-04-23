@@ -1,8 +1,8 @@
 /**
  * NHL Playoff Pool — Auto Stats Fetcher
- * - Regular points: from stats summary API (one bulk call)
- * - OT bonus: checks play-by-play of every playoff game since Apr 18
- *   Anyone who got a point (goal or assist) on an OT goal gets +1 bonus
+ * - Gets total playoff points from stats API (one bulk call)
+ * - Gets recent points (last 24hrs) from game logs
+ * - Gets OT bonus by checking play-by-play of each playoff game
  */
 
 const https = require('https');
@@ -44,11 +44,10 @@ const PLAYER_IDS = {
   Guentzel:   8477404,
 };
 
-const SEASON    = '20252026';
-const GAME_TYPE = 3;
+const SEASON         = '20252026';
+const GAME_TYPE      = 3;
 const PLAYOFFS_START = '2026-04-18';
 
-// Reverse lookup: playerId -> name
 const ID_TO_NAME = {};
 for (const [name, id] of Object.entries(PLAYER_IDS)) {
   ID_TO_NAME[id] = name;
@@ -61,19 +60,18 @@ function fetchUrl(url) {
       res.on('data', chunk => raw += chunk);
       res.on('end', () => {
         try { resolve(JSON.parse(raw)); }
-        catch (e) { reject(new Error('JSON parse failed for: ' + url)); }
+        catch (e) { reject(new Error('JSON parse failed: ' + url)); }
       });
     }).on('error', reject);
   });
 }
 
-// Get all playoff game IDs since playoffs started
+// Get all completed playoff game IDs since playoffs started
 async function getPlayoffGameIds() {
   const gameIds = [];
-  // Check each day from Apr 18 to today
   const start = new Date(PLAYOFFS_START);
   const today = new Date();
-  
+
   for (let d = new Date(start); d <= today; d.setDate(d.getDate() + 1)) {
     const dateStr = d.toISOString().split('T')[0];
     try {
@@ -81,18 +79,16 @@ async function getPlayoffGameIds() {
       for (const week of data.gameWeek || []) {
         for (const game of week.games || []) {
           if (game.gameType === GAME_TYPE && game.gameState === 'OFF') {
-            gameIds.push(game.id);
+            gameIds.push({ id: game.id, date: dateStr });
           }
         }
       }
-    } catch(e) {
-      // skip days with no games
-    }
+    } catch(e) {}
   }
-  return [...new Set(gameIds)]; // dedupe
+  return [...new Map(gameIds.map(g => [g.id, g])).values()];
 }
 
-// Check play-by-play for OT goals and return pool player IDs who got points
+// Check play-by-play for OT goal point-getters (scorer + assisters)
 async function getOtPointScorers(gameId) {
   const scorers = new Set();
   try {
@@ -101,17 +97,38 @@ async function getOtPointScorers(gameId) {
       if (play.typeDescKey !== 'goal') continue;
       const periodType = (play.periodDescriptor || {}).periodType;
       if (periodType !== 'OT') continue;
-      
-      // Add scorer and assisters
       const details = play.details || {};
       if (details.scoringPlayerId)  scorers.add(details.scoringPlayerId);
       if (details.assist1PlayerId)  scorers.add(details.assist1PlayerId);
       if (details.assist2PlayerId)  scorers.add(details.assist2PlayerId);
     }
-  } catch(e) {
-    // skip on error
-  }
+  } catch(e) {}
   return scorers;
+}
+
+// Get recent points (last 24 hours) from individual game logs
+async function fetchRecentPoints() {
+  const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const recentByName = {};
+
+  for (const [name, pid] of Object.entries(PLAYER_IDS)) {
+    try {
+      const data = await fetchUrl(
+        `https://api-web.nhle.com/v1/player/${pid}/game-log/${SEASON}/${GAME_TYPE}`
+      );
+      let recentPts = 0;
+      for (const game of data.gameLog || []) {
+        const gameDate = new Date(game.gameDate);
+        if (gameDate >= cutoff) {
+          recentPts += (game.goals || 0) + (game.assists || 0);
+        }
+      }
+      recentByName[name] = recentPts;
+    } catch(e) {
+      recentByName[name] = 0;
+    }
+  }
+  return recentByName;
 }
 
 // Get all regular playoff points from stats API (one bulk call)
@@ -136,28 +153,42 @@ async function fetchRegularPoints() {
 async function main() {
   console.log('=== NHL Playoff Pool Stats Fetcher ===\n');
 
-  // Step 1: Regular points
-  console.log('Fetching regular playoff points...');
+  // Step 1: Total points
+  console.log('Fetching total playoff points...');
   const ptsByid = await fetchRegularPoints();
 
-  // Step 2: Find all OT goal point-getters across all playoff games
-  console.log('Finding playoff game IDs...');
-  const gameIds = await getPlayoffGameIds();
-  console.log(`Found ${gameIds.length} completed playoff games. Checking for OT goals...`);
+  // Step 2: Recent points (last 24hrs)
+  console.log('Fetching recent points (last 24 hrs)...');
+  const recentByName = await fetchRecentPoints();
 
-  const otPlayerIds = new Set();
-  for (const gameId of gameIds) {
-    const scorers = await getOtPointScorers(gameId);
-    for (const id of scorers) otPlayerIds.add(id);
+  // Step 3: OT goals via play-by-play
+  console.log('Finding playoff games and checking for OT goals...');
+  const games = await getPlayoffGameIds();
+  console.log(`Found ${games.length} completed games.`);
+
+  const otPlayerIds   = new Set(); // all-time OT point getters
+  const recentOtIds   = new Set(); // OT point getters in last 24hrs
+  const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
+  for (const game of games) {
+    const scorers = await getOtPointScorers(game.id);
+    for (const id of scorers) {
+      otPlayerIds.add(id);
+      if (new Date(game.date) >= cutoff) {
+        recentOtIds.add(id);
+      }
+    }
   }
 
-  // Step 3: Build results
+  // Step 4: Build results
   const players = {};
   for (const [name, pid] of Object.entries(PLAYER_IDS)) {
-    const pts   = ptsByid[pid] || 0;
-    const otPts = otPlayerIds.has(pid) ? 1 : 0;
-    players[name] = { pts, otPts };
-    console.log(`  ${name.padEnd(15)} ${pts} pts, ${otPts} OT pts`);
+    const pts       = ptsByid[pid] || 0;
+    const otPts     = otPlayerIds.has(pid) ? 1 : 0;
+    const recentPts = recentByName[name] || 0;
+    const recentOtPts = recentOtIds.has(pid) ? 1 : 0;
+    players[name] = { pts, otPts, recentPts, recentOtPts };
+    console.log(`  ${name.padEnd(15)} ${pts} pts, ${otPts} OT | recent: ${recentPts} pts, ${recentOtPts} OT`);
   }
 
   const output = {

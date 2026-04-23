@@ -278,32 +278,17 @@ function initials(name){
 }
 
 let stats = {};
-let prevStats = {};
 let lastUpdated = null;
 
 function getS(p){ return stats[p] || {pts:0, otPts:0}; }
 function poolPts(p){ const s=getS(p); return s.pts + s.otPts; }
 function participantTotal(p){ return p.picks.reduce((sum,pick)=>sum+poolPts(pick),0); }
 
-// Load previous stats from localStorage for change detection
-function loadPrevStats(){
-  try {
-    const raw = localStorage.getItem('nhlpool_prev_stats');
-    return raw ? JSON.parse(raw) : {};
-  } catch(e){ return {}; }
-}
-
-function savePrevStats(s){
-  try { localStorage.setItem('nhlpool_prev_stats', JSON.stringify(s)); } catch(e){}
-}
-
 async function fetchData(){
   setStatus('loading','Fetching latest stats...');
   const btn = document.getElementById('refreshBtn');
   btn.disabled = true;
   btn.innerHTML = '<span class="spin">↻</span> Loading...';
-
-  prevStats = loadPrevStats();
 
   try {
     const resp = await fetch('./data.json?t=' + Date.now());
@@ -320,9 +305,7 @@ async function fetchData(){
     if (el) el.textContent = ts;
 
     // Save current as prev for next refresh
-    savePrevStats(stats);
-
-  } catch (err) {
+    savePrevStats(stats); (err) {
     console.error('Failed to load data.json:', err);
     setStatus('error', 'Could not load stats. Try refreshing.');
   }
@@ -438,47 +421,41 @@ function renderPicksTable(){
 }
 
 function renderUpdates(){
-  // Find players whose pool pts changed since last load
-  const changes = [];
+  // Show top 5 scorers from last 24 hours using recentPts from data.json
   const allPlayers = [...new Set(PARTICIPANTS.flatMap(p=>p.picks))];
+  const hot = [];
 
   allPlayers.forEach(key => {
-    const curr = stats[key] || {pts:0, otPts:0};
-    const prev = prevStats[key] || {pts:0, otPts:0};
-    const currPool = curr.pts + curr.otPts;
-    const prevPool = prev.pts + prev.otPts;
-    const diff = currPool - prevPool;
-    const newOT = curr.otPts > prev.otPts;
-    if (diff > 0) {
-      changes.push({ key, name: fn(key), diff, newOT });
+    const s = stats[key] || {pts:0, otPts:0, recentPts:0, recentOtPts:0};
+    const recentPool = (s.recentPts || 0) + (s.recentOtPts || 0);
+    if (recentPool > 0) {
+      hot.push({ key, name: fn(key), recentPool, recentOtPts: s.recentOtPts || 0 });
     }
   });
 
-  // Sort by biggest gain first
-  changes.sort((a,b) => b.diff - a.diff);
+  hot.sort((a,b) => b.recentPool - a.recentPool);
+  const top5 = hot.slice(0, 5);
 
   const ts = lastUpdated ? new Date(lastUpdated).toLocaleString() : '';
   document.getElementById('updatesHdr').textContent =
-    changes.length > 0
-      ? `🔥 Latest Updates — ${ts}`
-      : `Latest Updates — ${ts}`;
+    top5.length > 0 ? `🔥 Hot Tonight — ${ts}` : `Hot Tonight — ${ts}`;
 
-  if (changes.length === 0) {
+  if (top5.length === 0) {
     document.getElementById('updatesContainer').innerHTML =
-      `<div class="update-empty">No changes detected since your last refresh.<br><span style="font-size:12px;color:var(--silver);">Hit ↻ Refresh after games to see who scored!</span></div>`;
+      `<div class="update-empty">No scoring in the last 24 hours yet.<br><span style="font-size:12px;color:var(--silver);">Check back after tonight's games!</span></div>`;
     return;
   }
 
   let html = '';
-  changes.forEach(({key, name, diff, newOT}) => {
+  top5.forEach(({key, name, recentPool, recentOtPts}) => {
     const ini = initials(name);
-    html += `<div class="update-card${newOT?' has-ot':''}">
+    html += `<div class="update-card${recentOtPts > 0 ? ' has-ot' : ''}">
       <div class="update-avatar">${ini}</div>
       <div>
-        <div class="update-name">${name}${newOT?`<span class="ot-tag">OT</span>`:''}</div>
-        <div class="update-game">+${diff} pool pt${diff>1?'s':''} since last refresh</div>
+        <div class="update-name">${name}${recentOtPts > 0 ? `<span class="ot-tag">OT</span>` : ''}</div>
+        <div class="update-game">${recentPool} pool pt${recentPool > 1 ? 's' : ''} in the last 24 hrs</div>
       </div>
-      <div class="update-pts">+${diff}</div>
+      <div class="update-pts">+${recentPool}</div>
     </div>`;
   });
   document.getElementById('updatesContainer').innerHTML = html;
