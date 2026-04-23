@@ -54,7 +54,7 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .section-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
 
 .lb{display:flex;flex-direction:column;gap:8px;}
-.lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s;}
+.lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:14px;cursor:pointer;transition:border-color .15s;overflow:hidden;}
 .lb-card:hover{border-color:var(--border2);}
 .lb-card.r1{border-color:var(--gold);background:linear-gradient(90deg,rgba(245,166,35,.1),var(--card) 55%);}
 .lb-card.r2{border-color:rgba(192,192,192,.35);background:linear-gradient(90deg,rgba(192,192,192,.06),var(--card) 55%);}
@@ -63,8 +63,15 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .r1 .lb-rank{color:var(--gold);}.r2 .lb-rank{color:#c0c0c0;}.r3 .lb-rank{color:#cd7f32;}
 .lb-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;}
 .lb-picks{font-size:12px;color:var(--silver);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.lb-pts{font-family:'Barlow Condensed',sans-serif;font-size:38px;font-weight:900;color:var(--gold);line-height:1;text-align:right;}
+.lb-pts{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:900;color:var(--gold);line-height:1;text-align:right;white-space:nowrap;min-width:55px;}
 .lb-pts-lbl{font-size:11px;color:var(--silver);letter-spacing:1px;text-transform:uppercase;text-align:right;}
+.crown{font-size:18px;display:block;text-align:center;line-height:1;margin-bottom:2px;}
+.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+.series-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.series-teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.series-team{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;}
+.series-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;}
+.series-status{font-size:12px;color:var(--silver);text-align:center;margin-top:4px;}
 .bars{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin-top:8px;}
 .bar{height:5px;border-radius:2px;background:rgba(255,255,255,.07);}
 .bar.got{background:var(--gold);}.bar.ot{background:var(--gold2);}
@@ -141,6 +148,7 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tab" onclick="showTab('players',this)">⛸ Players</div>
   <div class="tab" onclick="showTab('picks',this)">📋 All Picks</div>
   <div class="tab" onclick="showTab('updates',this)">🔥 Updates</div>
+  <div class="tab" onclick="showTab('series',this)">🏒 Series</div>
   <div class="tab" onclick="showTab('info',this)">ℹ️ How It Works</div>
 </nav>
 
@@ -184,6 +192,11 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="lb" id="updatesContainer">
     <div class="update-empty">No changes yet — check back after tonight's games!</div>
   </div>
+</div>
+
+<div class="page" id="page-series">
+  <div class="section-hdr">2026 Playoff Series</div>
+  <div class="series-grid" id="seriesContainer"></div>
 </div>
 
 <!-- INFO -->
@@ -304,7 +317,8 @@ async function fetchData(){
     const el = document.getElementById('lastUpdatedDisplay');
     if (el) el.textContent = ts;
 
-    } catch (err)  {
+    // Save current as prev for next refresh
+    savePrevStats(stats); (err) {
     console.error('Failed to load data.json:', err);
     setStatus('error', 'Could not load stats. Try refreshing.');
   }
@@ -321,6 +335,7 @@ function setStatus(type, text){
 }
 
 function renderAll(){
+  renderSeries();
   renderStandings();
   renderPlayers();
   renderPicksTable();
@@ -458,6 +473,36 @@ function renderUpdates(){
     </div>`;
   });
   document.getElementById('updatesContainer').innerHTML = html;
+}
+
+function renderSeries(){
+  // Hardcoded 2026 first round series — update as series progress
+  const SERIES = [
+    {away:"Ottawa",home:"Carolina",awayW:0,homeW:2,status:"CAR leads 2-0"},
+    {away:"Philadelphia",home:"Pittsburgh",awayW:3,homeW:0,status:"PHI leads 3-0"},
+    {away:"Boston",home:"Buffalo",awayW:1,homeW:1,status:"Series tied 1-1"},
+    {away:"Montreal",home:"Tampa Bay",awayW:1,homeW:1,status:"Series tied 1-1"},
+    {away:"LA Kings",home:"Colorado",awayW:0,homeW:2,status:"COL leads 2-0"},
+    {away:"Minnesota",home:"Dallas",awayW:2,homeW:2,status:"Series tied 2-2"},
+    {away:"Utah",home:"Vegas",awayW:1,homeW:1,status:"Series tied 1-1"},
+    {away:"Anaheim",home:"Edmonton",awayW:1,homeW:1,status:"Series tied 1-1"},
+  ];
+  let html = "";
+  SERIES.forEach(s=>{
+    const awayLeads = s.awayW > s.homeW;
+    const homeLeads = s.homeW > s.awayW;
+    html += `<div class="series-card">
+      <div class="series-teams">
+        <span class="series-team" style="color:${awayLeads?"var(--gold2)":"#fff"}">${s.away}</span>
+        <span style="font-size:11px;color:var(--silver);padding:0 8px;">VS</span>
+        <span class="series-team" style="text-align:right;color:${homeLeads?"var(--gold2)":"#fff"}">${s.home}</span>
+      </div>
+      <div class="series-score">${s.awayW} — ${s.homeW}</div>
+      <div class="series-status">${s.status}</div>
+    </div>`;
+  });
+  const el = document.getElementById("seriesContainer");
+  if(el) el.innerHTML = html;
 }
 
 function showTab(id,el){
