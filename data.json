@@ -1,139 +1,205 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-23T20:05:35.255Z",
+  "lastUpdated": "2026-04-23T20:17:26.048Z",
   "players": {
     "McDavid": {
       "pts": 0,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "MacKinnon": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Rantanen": {
       "pts": 3,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Makar": {
       "pts": 0,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Kaprizov": {
       "pts": 4,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Kucherov": {
       "pts": 3,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Necas": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Suzuki": {
       "pts": 3,
-      "otPts": 1
+      "otPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Caufield": {
       "pts": 3,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Robertson": {
       "pts": 5,
-      "otPts": 1
+      "otPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Aho": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Hyman": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Hagel": {
       "pts": 4,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Svechnikov": {
       "pts": 0,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Demidov": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Bouchard": {
       "pts": 0,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Marner": {
       "pts": 2,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Crosby": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Stone": {
       "pts": 2,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Eichel": {
       "pts": 2,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Thompson": {
       "pts": 3,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Stutzle": {
       "pts": 0,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Batherson": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Guenther": {
       "pts": 2,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Savoie": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Slafkovsky": {
       "pts": 3,
-      "otPts": 1
+      "otPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Ehlers": {
       "pts": 1,
-      "otPts": 1
+      "otPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Konecny": {
       "pts": 2,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Schmaltz": {
       "pts": 0,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Dahlin": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Hutson": {
       "pts": 2,
-      "otPts": 1
+      "otPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Johnston": {
       "pts": 5,
-      "otPts": 1
+      "otPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0
     },
     "Guentzel": {
       "pts": 4,
-      "otPts": 0
+      "otPts": 0,
+      "recentPts": 0,
+      "recentOtPts": 0
     }
   }
 }
