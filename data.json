@@ -33,7 +33,7 @@
     },
     "Suzuki": {
       "pts": 3,
-      "otPts": 0
+      "otPts": 1
     },
     "Caufield": {
       "pts": 3,
@@ -72,7 +72,7 @@
       "otPts": 0
     },
     "Crosby": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Stone": {
@@ -109,10 +109,10 @@
     },
     "Ehlers": {
       "pts": 1,
-      "otPts": 0
+      "otPts": 1
     },
     "Konecny": {
-      "pts": 0,
+      "pts": 2,
       "otPts": 0
     },
     "Schmaltz": {
@@ -120,12 +120,12 @@
       "otPts": 0
     },
     "Dahlin": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0
     },
     "Hutson": {
-      "pts": 2,
-      "otPts": 0
+      "pts": 1,
+      "otPts": 1
     },
     "Johnston": {
       "pts": 3,
