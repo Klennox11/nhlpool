@@ -105,14 +105,14 @@ tbody td{padding:10px 12px;font-size:14px;}
 .update-pts{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:900;color:var(--gold);margin-left:auto;flex-shrink:0;}
 .update-empty{text-align:center;padding:40px 20px;color:var(--silver);font-size:14px;}
 
-/* SERIES TAB */
-.series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
-.series-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
-.series-matchup{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.series-team{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;flex:1;}
-.series-team.leader{color:var(--gold2);}
-.series-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;padding:0 12px;flex-shrink:0;}
-.series-status{font-size:12px;color:var(--silver);text-align:center;}
+/*  TAB */
+.-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.-matchup{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.-team{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;flex:1;}
+.-team.leader{color:var(--gold2);}
+.-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;padding:0 12px;flex-shrink:0;}
+.-status{font-size:12px;color:var(--silver);text-align:center;}
 
 /* INFO PAGE */
 .info-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
@@ -149,7 +149,7 @@ tbody td{padding:10px 12px;font-size:14px;}
   <div class="tab" onclick="showTab('players',this)">⛸ Players</div>
   <div class="tab" onclick="showTab('picks',this)">📋 All Picks</div>
   <div class="tab" onclick="showTab('updates',this)">🔥 Updates</div>
-  <div class="tab" onclick="showTab('series',this)">🏒 Series</div>
+  <div class="tab" onclick="showTab('',this)">🏒 </div>
   <div class="tab" onclick="showTab('cole',this)">🤙 Cole Hayes</div>
   <div class="tab" onclick="showTab('info',this)">ℹ️ How It Works</div>
 </nav>
@@ -196,10 +196,10 @@ tbody td{padding:10px 12px;font-size:14px;}
   </div>
 </div>
 
-<!-- SERIES -->
-<div class="page" id="page-series">
-  <div class="section-hdr">2026 First Round Series</div>
-  <div class="series-grid" id="seriesContainer"></div>
+<!--  -->
+<div class="page" id="page-">
+  <div class="section-hdr">2026 First Round </div>
+  <div class="-grid" id="Container"></div>
 </div>
 
 <!-- COLE HAYES -->
@@ -320,7 +320,7 @@ function renderAll(){
   renderPlayers();
   renderPicksTable();
   renderUpdates();
-  renderSeries();
+  render();
 }
 
 function renderStandings(){
@@ -447,13 +447,13 @@ function renderUpdates(){
   document.getElementById('updatesContainer').innerHTML = html;
 }
 
-function renderSeries(){
-  const SERIES = [
-    {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:2, status:'CAR leads 2-0'},
+function render(){
+  const  = [
+    {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:2, status:'CAR leads 3-0'},
     {away:'Philadelphia', home:'Pittsburgh',  awayW:3, homeW:0, status:'PHI leads 3-0'},
-    {away:'Boston',       home:'Buffalo',     awayW:1, homeW:1, status:'Series tied 1-1'},
+    {away:'Boston',       home:'Buffalo',     awayW:1, homeW:1, status:'BUF leads 2-1'},
     {away:'Montreal',     home:'Tampa Bay',   awayW:1, homeW:1, status:'Series tied 1-1'},
-    {away:'LA Kings',     home:'Colorado',    awayW:0, homeW:2, status:'COL leads 2-0'},
+    {away:'LA Kings',     home:'Colorado',    awayW:0, homeW:2, status:'COL leads 3-0'},
     {away:'Minnesota',    home:'Dallas',      awayW:1, homeW:2, status:'DAL leads 2-1'},
     {away:'Utah',         home:'Vegas',       awayW:1, homeW:1, status:'Series tied 1-1'},
     {away:'Anaheim',      home:'Edmonton',    awayW:1, homeW:1, status:'Series tied 1-1'},
