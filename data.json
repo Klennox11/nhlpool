@@ -1,12 +1,12 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-25T05:04:45.539Z",
+  "lastUpdated": "2026-04-25T06:06:06.654Z",
   "players": {
     "McDavid": {
-      "pts": 0,
+      "pts": 2,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "MacKinnon": {
