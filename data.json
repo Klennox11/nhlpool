@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-25T19:57:45.637Z",
+  "lastUpdated": "2026-04-25T23:01:53.909Z",
   "players": {
     "McDavid": {
       "pts": 2,
@@ -64,9 +64,9 @@
       "recentOtPts": 0
     },
     "Aho": {
-      "pts": 1,
+      "pts": 3,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Hyman": {
@@ -130,15 +130,15 @@
       "recentOtPts": 0
     },
     "Stutzle": {
-      "pts": 0,
+      "pts": 1,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Batherson": {
-      "pts": 2,
+      "pts": 4,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Guenther": {
