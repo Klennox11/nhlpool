@@ -37,7 +37,7 @@ const PLAYER_IDS = {
   Slafkovsky: 8483515,
   Ehlers:     8477940,
   Konecny:    8478439,
-  Schmaltz:   8476882,
+  Schmaltz:   8477951,
   Dahlin:     8480839,
   Hutson:     8483457,
   Johnston:   8482740,
