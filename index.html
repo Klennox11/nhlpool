@@ -106,11 +106,14 @@ tbody td{padding:10px 12px;font-size:14px;}
 
 .series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 .series-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.series-card.series-over{border-color:var(--gold);background:linear-gradient(135deg,rgba(245,166,35,.08),var(--card));}
 .series-matchup{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .series-team{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;flex:1;}
 .series-team.leader{color:var(--gold2);}
+.series-team.winner{color:var(--gold);}
 .series-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;padding:0 12px;flex-shrink:0;}
 .series-status{font-size:12px;color:var(--silver);text-align:center;}
+.series-status.won{color:var(--gold);font-weight:600;}
 
 .info-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
 .info-box h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:16px;}
@@ -190,7 +193,7 @@ tbody td{padding:10px 12px;font-size:14px;}
 </div>
 
 <div class="page" id="page-series">
-  <div class="section-hdr">2026 First Round Series</div>
+  <div class="section-hdr">2026 Playoff Series</div>
   <div class="series-grid" id="seriesContainer"></div>
 </div>
 
@@ -440,26 +443,27 @@ function renderUpdates(){
 function renderSeries(){
   // Update scores here as series progress!
   const SERIES = [
-    {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:4, status:'CAR wins 4-0'},
+    {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:4, status:'CAR wins 4-0', over:true},
     {away:'Philadelphia', home:'Pittsburgh',  awayW:3, homeW:2, status:'PHI leads 3-2'},
     {away:'Boston',       home:'Buffalo',     awayW:1, homeW:3, status:'BUF leads 3-1'},
     {away:'Montreal',     home:'Tampa Bay',   awayW:2, homeW:2, status:'Series tied 2-2'},
-    {away:'LA Kings',     home:'Colorado',    awayW:0, homeW:4, status:'COL wins 4-0'},
+    {away:'LA Kings',     home:'Colorado',    awayW:0, homeW:4, status:'COL wins 4-0', over:true},
     {away:'Minnesota',    home:'Dallas',      awayW:2, homeW:2, status:'Series tied 2-2'},
     {away:'Utah',         home:'Vegas',       awayW:2, homeW:2, status:'Series tied 2-2'},
-    {away:'Anaheim',      home:'Edmonton',    awayW:3, homeW:1, status:'ANH leads 3-1'},
+    {away:'Anaheim',      home:'Edmonton',    awayW:1, homeW:3, status:'EDM leads 3-1'},
   ];
   let html = '';
   SERIES.forEach(s => {
     const awayLeads = s.awayW > s.homeW;
     const homeLeads = s.homeW > s.awayW;
-    html += `<div class="series-card">
+    const isOver = s.over || false;
+    html += `<div class="series-card${isOver ? ' series-over' : ''}">
       <div class="series-matchup">
-        <span class="series-team${awayLeads?' leader':''}">${s.away}</span>
+        <span class="series-team${awayLeads ? (isOver ? ' winner' : ' leader') : ''}">${s.away}</span>
         <span class="series-score">${s.awayW}–${s.homeW}</span>
-        <span class="series-team${homeLeads?' leader':''}" style="text-align:right">${s.home}</span>
+        <span class="series-team${homeLeads ? (isOver ? ' winner' : ' leader') : ''}" style="text-align:right">${s.home}</span>
       </div>
-      <div class="series-status">${s.status}</div>
+      <div class="series-status${isOver ? ' won' : ''}">${isOver ? '🏆 ' : ''}${s.status}</div>
     </div>`;
   });
   document.getElementById('seriesContainer').innerHTML = html;
