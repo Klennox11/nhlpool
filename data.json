@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-28T07:57:10.685Z",
+  "lastUpdated": "2026-04-28T13:16:32.583Z",
   "players": {
     "McDavid": {
       "pts": 4,
@@ -94,7 +94,7 @@
       "recentOtPts": 0
     },
     "Bouchard": {
-      "pts": 0,
+      "pts": 4,
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0
@@ -185,7 +185,7 @@
     },
     "Hutson": {
       "pts": 4,
-      "otPts": 1,
+      "otPts": 2,
       "recentPts": 0,
       "recentOtPts": 0
     },
