@@ -24,7 +24,7 @@ const PLAYER_IDS = {
   Hagel:      8479542,
   Svechnikov: 8480830,
   Demidov:    8484984,
-  Bouchard:   8480932,
+  Bouchard:   8480803,
   Marner:     8478483,
   Crosby:     8471675,
   Stone:      8475913,
