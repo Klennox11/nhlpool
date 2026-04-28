@@ -1,18 +1,18 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-04-27T21:36:44.466Z",
+  "lastUpdated": "2026-04-28T07:57:10.685Z",
   "players": {
     "McDavid": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "MacKinnon": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Rantanen": {
@@ -24,7 +24,7 @@
     "Makar": {
       "pts": 2,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Kaprizov": {
@@ -36,25 +36,25 @@
     "Kucherov": {
       "pts": 6,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Necas": {
       "pts": 2,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Suzuki": {
       "pts": 4,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Caufield": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Robertson": {
@@ -78,7 +78,7 @@
     "Hagel": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Svechnikov": {
@@ -100,15 +100,15 @@
       "recentOtPts": 0
     },
     "Marner": {
-      "pts": 2,
+      "pts": 3,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Crosby": {
-      "pts": 3,
+      "pts": 5,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Stone": {
@@ -118,15 +118,15 @@
       "recentOtPts": 0
     },
     "Eichel": {
-      "pts": 3,
-      "otPts": 0,
-      "recentPts": 0,
-      "recentOtPts": 0
+      "pts": 6,
+      "otPts": 1,
+      "recentPts": 3,
+      "recentOtPts": 1
     },
     "Thompson": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Stutzle": {
@@ -142,9 +142,9 @@
       "recentOtPts": 0
     },
     "Guenther": {
-      "pts": 3,
+      "pts": 4,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Savoie": {
@@ -166,15 +166,15 @@
       "recentOtPts": 0
     },
     "Konecny": {
-      "pts": 3,
+      "pts": 4,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Schmaltz": {
-      "pts": 1,
+      "pts": 3,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Dahlin": {
@@ -186,7 +186,7 @@
     "Hutson": {
       "pts": 4,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Johnston": {
@@ -198,7 +198,7 @@
     "Guentzel": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0
     }
   }
