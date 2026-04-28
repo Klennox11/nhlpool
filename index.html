@@ -69,6 +69,7 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .bars{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;margin-top:8px;}
 .bar{height:5px;border-radius:2px;background:rgba(255,255,255,.07);}
 .bar.got{background:var(--gold);}.bar.ot{background:var(--gold2);}
+.bar.elim{background:rgba(255,255,255,.15);}
 
 .back-btn{background:none;border:1px solid var(--border);color:var(--silver);padding:7px 14px;border-radius:6px;font-family:'Barlow',sans-serif;font-size:13px;cursor:pointer;margin-bottom:16px;transition:all .15s;}
 .back-btn:hover{border-color:var(--gold);color:var(--gold);}
@@ -85,13 +86,16 @@ tbody td{padding:10px 12px;font-size:14px;}
 .td-gold{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--gold);}
 .td-dim{color:var(--silver);font-size:13px;}
 .ot-tag{display:inline-block;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px;vertical-align:middle;}
+.elim-tag{display:inline-block;background:rgba(255,255,255,.1);color:var(--silver);font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px;vertical-align:middle;letter-spacing:1px;}
 
 .p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}
 .p-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
 .p-card.has-ot{border-color:var(--gold);}
+.p-card.is-elim{opacity:0.45;border-color:rgba(255,255,255,.08);}
 .p-card-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;}
 .p-card-stat{font-size:12px;color:var(--silver);margin-top:3px;}
 .p-card-pts{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--gold);}
+.p-card.is-elim .p-card-pts{color:var(--silver);}
 
 .spinner{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;color:var(--silver);gap:16px;}
 .spin-big{width:40px;height:40px;border:3px solid rgba(245,166,35,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
@@ -238,6 +242,14 @@ tbody td{padding:10px 12px;font-size:14px;}
 <script>
 const GROUPS = ['Group 1','Group 2','Group 3','Group 4','Group 5','Group 6','Group 7','Group 8','Group 9','Group 10'];
 
+// ─── UPDATE THIS LIST AS TEAMS GET ELIMINATED ─────────────────────────────
+// Add the last name key of any player whose team is out
+const ELIMINATED = new Set([
+  'Stutzle',    // Ottawa eliminated by Carolina
+  'Batherson',  // Ottawa eliminated by Carolina
+  // Add more here as playoffs progress e.g: 'McDavid', 'Hagel' etc
+]);
+
 const PARTICIPANTS = [
   {name:'Kael',     picks:['McDavid','Robertson','Caufield','Rantanen','Makar','Aho','Hyman','Schmaltz','Konecny','Demidov']},
   {name:'Jacques',  picks:['MacKinnon','Necas','Johnston','Rantanen','Bouchard','Aho','Hyman','Hagel','Svechnikov','Savoie']},
@@ -270,6 +282,7 @@ const FULL_NAMES = {
 };
 function fn(k){ return FULL_NAMES[k] || k; }
 function initials(name){ return name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+function isElim(k){ return ELIMINATED.has(k); }
 
 let stats = {};
 let lastUpdated = null;
@@ -326,10 +339,14 @@ function renderStandings(){
     const rc=rank===1?' r1':rank===2?' r2':rank===3?' r3':'';
     const summary=p.picks.map((pick,i)=>{
       const pp=p.gp[i];
+      const out = isElim(pick);
+      if(out) return `<span style="color:rgba(138,155,181,0.4);text-decoration:line-through">${fn(pick)}</span>`;
       return pp>0?`<b style="color:var(--gold2)">${fn(pick)} (${pp})</b>`:fn(pick);
     }).join(', ');
     const bars=p.gp.map((pp,i)=>{
       const hasOT=getS(p.picks[i]).otPts>0;
+      const out=isElim(p.picks[i]);
+      if(out) return `<div class="bar elim" title="${GROUPS[i]}: eliminated"></div>`;
       return `<div class="bar${pp>0?(hasOT?' ot':' got'):''}" title="${GROUPS[i]}: ${pp}pt"></div>`;
     }).join('');
     const crownHtml = rank===1 ? '<span class="crown">👑</span>' : '';
@@ -361,12 +378,13 @@ function showDetail(name){
     <thead><tr><th>Group</th><th>Player</th><th>Playoff Pts</th><th>OT Goals</th><th>Pool Pts</th></tr></thead><tbody>`;
   p.picks.forEach((pick,i)=>{
     const s=getS(pick); const pp=poolPts(pick);
-    html+=`<tr>
+    const out=isElim(pick);
+    html+=`<tr style="${out?'opacity:0.4':''}">
       <td class="td-dim">${GROUPS[i]}</td>
-      <td><strong>${fn(pick)}</strong></td>
+      <td><strong>${fn(pick)}</strong>${out?'<span class="elim-tag">OUT</span>':''}</td>
       <td>${s.pts}</td>
       <td>${s.otPts>0?`<span style="color:var(--gold2);font-weight:600">${s.otPts}</span>`:'—'}</td>
-      <td class="td-gold">${pp}${s.otPts>0?`<span class="ot-tag">+${s.otPts}OT</span>`:''}</td>
+      <td class="td-gold" style="${out?'color:var(--silver)':''}">${pp}${s.otPts>0&&!out?`<span class="ot-tag">+${s.otPts}OT</span>`:''}</td>
     </tr>`;
   });
   html+='</tbody></table></div>';
@@ -375,12 +393,17 @@ function showDetail(name){
 
 function renderPlayers(){
   const all=[...new Set(PARTICIPANTS.flatMap(p=>p.picks))];
-  const sorted=all.map(p=>({p,s:getS(p),pp:poolPts(p)})).sort((a,b)=>b.pp-a.pp);
+  const sorted=all.map(p=>({p,s:getS(p),pp:poolPts(p),out:isElim(p)}))
+    .sort((a,b)=>{
+      if(a.out && !b.out) return 1;
+      if(!a.out && b.out) return -1;
+      return b.pp-a.pp;
+    });
   let html='';
-  sorted.forEach(({p,s,pp})=>{
-    html+=`<div class="p-card${s.otPts>0?' has-ot':''}">
-      <div class="p-card-name">${fn(p)}${s.otPts>0?`<span class="ot-tag">+${s.otPts}OT</span>`:''}</div>
-      <div class="p-card-stat">${s.pts} playoff pts · ${s.otPts} OT goals</div>
+  sorted.forEach(({p,s,pp,out})=>{
+    html+=`<div class="p-card${s.otPts>0&&!out?' has-ot':''}${out?' is-elim':''}">
+      <div class="p-card-name">${fn(p)}${out?'<span class="elim-tag">OUT</span>':s.otPts>0?`<span class="ot-tag">+${s.otPts}OT</span>`:''}</div>
+      <div class="p-card-stat">${out?'Eliminated':s.pts+' playoff pts · '+s.otPts+' OT goals'}</div>
       <div class="p-card-pts">${pp} <span style="font-size:13px;color:var(--silver);font-weight:400">pool pts</span></div>
     </div>`;
   });
@@ -397,9 +420,10 @@ function renderPicksTable(){
     html+=`<tr><td><strong>${p.name}</strong></td>`;
     p.picks.forEach((pick,i)=>{
       const s=getS(pick); const pp=poolPts(pick);
-      html+=`<td>
+      const out=isElim(pick);
+      html+=`<td style="${out?'opacity:0.4':''}">
         <div style="font-size:11px;color:var(--silver)">${fn(pick)}</div>
-        <div class="td-gold" style="${pp===0?'color:var(--silver);font-size:14px;font-weight:400':''}">${pp}${s.otPts>0?`<span class="ot-tag">${s.otPts}OT</span>`:''}</div>
+        <div class="td-gold" style="${out?'color:var(--silver);text-decoration:line-through':pp===0?'color:var(--silver);font-size:14px;font-weight:400':''}">${pp}${s.otPts>0&&!out?`<span class="ot-tag">${s.otPts}OT</span>`:''}</div>
       </td>`;
     });
     html+=`<td class="td-gold" style="font-size:22px;">${total}</td></tr>`;
@@ -441,7 +465,6 @@ function renderUpdates(){
 }
 
 function renderSeries(){
-  // Update scores here as series progress!
   const SERIES = [
     {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:4, status:'CAR wins 4-0', over:true},
     {away:'Philadelphia', home:'Pittsburgh',  awayW:3, homeW:2, status:'PHI leads 3-2'},
