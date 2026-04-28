@@ -3,6 +3,7 @@
  * - Gets total playoff points from stats API (one bulk call)
  * - Gets recent points (last 24hrs) from game logs
  * - Gets OT bonus by checking play-by-play of each playoff game
+ * - Counts EACH OT goal separately (fixes multi-OT-goal players like Hutson)
  */
 
 const https = require('https');
@@ -88,9 +89,9 @@ async function getPlayoffGameIds() {
   return [...new Map(gameIds.map(g => [g.id, g])).values()];
 }
 
-// Check play-by-play for OT goal point-getters (scorer + assisters)
-async function getOtPointScorers(gameId) {
-  const scorers = new Set();
+// Check play-by-play and return a map of playerId -> OT goal count for that game
+async function getOtGoalCounts(gameId) {
+  const counts = {};
   try {
     const data = await fetchUrl(`https://api-web.nhle.com/v1/gamecenter/${gameId}/play-by-play`);
     for (const play of data.plays || []) {
@@ -98,22 +99,24 @@ async function getOtPointScorers(gameId) {
       const periodType = (play.periodDescriptor || {}).periodType;
       if (periodType !== 'OT') continue;
       const details = play.details || {};
-      if (details.scoringPlayerId)  scorers.add(details.scoringPlayerId);
-      if (details.assist1PlayerId)  scorers.add(details.assist1PlayerId);
-      if (details.assist2PlayerId)  scorers.add(details.assist2PlayerId);
+      // Give OT point to scorer and both assisters
+      for (const key of ['scoringPlayerId', 'assist1PlayerId', 'assist2PlayerId']) {
+        const pid = details[key];
+        if (pid) counts[pid] = (counts[pid] || 0) + 1;
+      }
     }
   } catch(e) {}
-  return scorers;
+  return counts;
 }
 
-// Get recent points (last 24 hours) from individual game logs
+// Get recent points (since yesterday) from individual game logs
 async function fetchRecentPoints() {
   const today = new Date();
   const yesterday = new Date(today);
   yesterday.setDate(yesterday.getDate() - 1);
-  const cutoffStr = yesterday.toISOString().split("T")[0];
-  const recentByName = {};
+  const cutoffStr = yesterday.toISOString().split('T')[0];
 
+  const recentByName = {};
   for (const [name, pid] of Object.entries(PLAYER_IDS)) {
     try {
       const data = await fetchUrl(
@@ -121,7 +124,7 @@ async function fetchRecentPoints() {
       );
       let recentPts = 0;
       for (const game of data.gameLog || []) {
-        const gameDate = (game.gameDate || "").slice(0, 10);
+        const gameDate = (game.gameDate || '').slice(0, 10);
         if (gameDate >= cutoffStr) {
           recentPts += (game.goals || 0) + (game.assists || 0);
         }
@@ -164,24 +167,27 @@ async function main() {
   console.log('Fetching recent points (last 24 hrs)...');
   const recentByName = await fetchRecentPoints();
 
-  // Step 3: OT goals via play-by-play
-  console.log('Finding playoff games and checking for OT goals...');
+  // Step 3: OT goal COUNTS per player across all playoff games
+  console.log('Finding playoff games and counting OT goals...');
   const games = await getPlayoffGameIds();
   console.log(`Found ${games.length} completed games.`);
 
-  const otPlayerIds   = new Set(); // all-time OT point getters
-  const recentOtIds   = new Set(); // OT point getters in last 24hrs
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const cutoffStr = yesterday.toISOString().split("T")[0];
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 1);
+  const cutoffStr = cutoff.toISOString().split('T')[0];
+
+  // otGoalCounts: playerId -> total OT goals all playoffs
+  // recentOtCounts: playerId -> OT goals in last 24hrs
+  const otGoalCounts   = {};
+  const recentOtCounts = {};
 
   for (const game of games) {
-    const scorers = await getOtPointScorers(game.id);
-    for (const id of scorers) {
-      otPlayerIds.add(id);
+    const counts = await getOtGoalCounts(game.id);
+    for (const [pid, count] of Object.entries(counts)) {
+      const pidNum = parseInt(pid);
+      otGoalCounts[pidNum] = (otGoalCounts[pidNum] || 0) + count;
       if (game.date >= cutoffStr) {
-        recentOtIds.add(id);
+        recentOtCounts[pidNum] = (recentOtCounts[pidNum] || 0) + count;
       }
     }
   }
@@ -189,10 +195,10 @@ async function main() {
   // Step 4: Build results
   const players = {};
   for (const [name, pid] of Object.entries(PLAYER_IDS)) {
-    const pts       = ptsByid[pid] || 0;
-    const otPts     = otPlayerIds.has(pid) ? 1 : 0;
-    const recentPts = recentByName[name] || 0;
-    const recentOtPts = recentOtIds.has(pid) ? 1 : 0;
+    const pts         = ptsByid[pid] || 0;
+    const otPts       = otGoalCounts[pid] || 0;
+    const recentPts   = recentByName[name] || 0;
+    const recentOtPts = recentOtCounts[pid] || 0;
     players[name] = { pts, otPts, recentPts, recentOtPts };
     console.log(`  ${name.padEnd(15)} ${pts} pts, ${otPts} OT | recent: ${recentPts} pts, ${recentOtPts} OT`);
   }
