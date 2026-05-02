@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-01T23:38:51.967Z",
+  "lastUpdated": "2026-05-02T06:31:23.308Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -18,7 +18,7 @@
     "Rantanen": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Makar": {
@@ -76,10 +76,10 @@
       "recentOtPts": 0
     },
     "Hagel": {
-      "pts": 7,
-      "otPts": 0,
-      "recentPts": 0,
-      "recentOtPts": 0
+      "pts": 8,
+      "otPts": 1,
+      "recentPts": 1,
+      "recentOtPts": 1
     },
     "Svechnikov": {
       "pts": 0,
@@ -100,9 +100,9 @@
       "recentOtPts": 0
     },
     "Marner": {
-      "pts": 4,
+      "pts": 7,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0
     },
     "Crosby": {
@@ -112,21 +112,21 @@
       "recentOtPts": 0
     },
     "Stone": {
-      "pts": 4,
+      "pts": 5,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Eichel": {
-      "pts": 8,
+      "pts": 9,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0
     },
     "Thompson": {
-      "pts": 5,
+      "pts": 7,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Stutzle": {
@@ -178,9 +178,9 @@
       "recentOtPts": 0
     },
     "Dahlin": {
-      "pts": 2,
+      "pts": 4,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0
     },
     "Hutson": {
@@ -192,7 +192,7 @@
     "Johnston": {
       "pts": 6,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0
     },
     "Guentzel": {
