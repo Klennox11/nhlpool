@@ -1,14 +1,14 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-02T22:54:58.394Z",
+  "lastUpdated": "2026-05-02T23:02:45.224Z",
   "players": {
     "McDavid": {
       "pts": 6,
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "EDM"
     },
     "MacKinnon": {
@@ -24,7 +24,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "DAL"
     },
     "Makar": {
@@ -80,7 +80,7 @@
       "otPts": 1,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "DAL"
     },
     "Aho": {
@@ -96,7 +96,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "EDM"
     },
     "Hagel": {
@@ -128,7 +128,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "EDM"
     },
     "Marner": {
@@ -144,7 +144,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "PIT"
     },
     "Stone": {
@@ -176,7 +176,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "OTT"
     },
     "Batherson": {
@@ -184,7 +184,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "OTT"
     },
     "Guenther": {
@@ -192,7 +192,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "UTA"
     },
     "Savoie": {
@@ -200,7 +200,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "EDM"
     },
     "Slafkovsky": {
@@ -232,7 +232,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "UTA"
     },
     "Dahlin": {
@@ -256,7 +256,7 @@
       "otPts": 1,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "DAL"
     },
     "Guentzel": {
@@ -271,136 +271,144 @@
   "series": [
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
-      "homeW": 0,
-      "status": "Series starting",
+      "away": "BUF",
+      "awayAbbrev": "BUF",
+      "awayW": 4,
+      "home": "BOS",
+      "homeAbbrev": "BOS",
+      "homeW": 2,
+      "status": "BUF wins 4-2",
+      "over": true
+    },
+    {
+      "round": 1,
+      "away": "TBL",
+      "awayAbbrev": "TBL",
+      "awayW": 3,
+      "home": "MTL",
+      "homeAbbrev": "MTL",
+      "homeW": 3,
+      "status": "Series tied 3-3",
       "over": false
     },
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
+      "away": "CAR",
+      "awayAbbrev": "CAR",
+      "awayW": 4,
+      "home": "OTT",
+      "homeAbbrev": "OTT",
       "homeW": 0,
-      "status": "Series starting",
-      "over": false
+      "status": "CAR wins 4-0",
+      "over": true
     },
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
-      "homeW": 0,
-      "status": "Series starting",
-      "over": false
+      "away": "PIT",
+      "awayAbbrev": "PIT",
+      "awayW": 2,
+      "home": "PHI",
+      "homeAbbrev": "PHI",
+      "homeW": 4,
+      "status": "PHI wins 4-2",
+      "over": true
     },
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
+      "away": "COL",
+      "awayAbbrev": "COL",
+      "awayW": 4,
+      "home": "LAK",
+      "homeAbbrev": "LAK",
       "homeW": 0,
-      "status": "Series starting",
-      "over": false
+      "status": "COL wins 4-0",
+      "over": true
     },
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
-      "homeW": 0,
-      "status": "Series starting",
-      "over": false
+      "away": "DAL",
+      "awayAbbrev": "DAL",
+      "awayW": 2,
+      "home": "MIN",
+      "homeAbbrev": "MIN",
+      "homeW": 4,
+      "status": "MIN wins 4-2",
+      "over": true
     },
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
-      "homeW": 0,
-      "status": "Series starting",
-      "over": false
+      "away": "VGK",
+      "awayAbbrev": "VGK",
+      "awayW": 4,
+      "home": "UTA",
+      "homeAbbrev": "UTA",
+      "homeW": 2,
+      "status": "VGK wins 4-2",
+      "over": true
     },
     {
       "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
-      "homeW": 0,
-      "status": "Series starting",
-      "over": false
+      "away": "EDM",
+      "awayAbbrev": "EDM",
+      "awayW": 2,
+      "home": "ANA",
+      "homeAbbrev": "ANA",
+      "homeW": 4,
+      "status": "ANA wins 4-2",
+      "over": true
     },
     {
-      "round": 1,
-      "away": "?",
-      "awayAbbrev": "?",
+      "round": 2,
+      "away": "CAR",
+      "awayAbbrev": "CAR",
       "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
+      "home": "PHI",
+      "homeAbbrev": "PHI",
       "homeW": 0,
       "status": "Series starting",
       "over": false
     },
     {
       "round": 2,
-      "away": "?",
-      "awayAbbrev": "?",
+      "away": "COL",
+      "awayAbbrev": "COL",
       "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
+      "home": "MIN",
+      "homeAbbrev": "MIN",
       "homeW": 0,
       "status": "Series starting",
       "over": false
     },
     {
       "round": 2,
-      "away": "?",
-      "awayAbbrev": "?",
+      "away": "BUF",
+      "awayAbbrev": "BUF",
       "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
+      "home": "TBD",
+      "homeAbbrev": "TBD",
       "homeW": 0,
       "status": "Series starting",
       "over": false
     },
     {
       "round": 2,
-      "away": "?",
-      "awayAbbrev": "?",
+      "away": "VGK",
+      "awayAbbrev": "VGK",
       "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
-      "homeW": 0,
-      "status": "Series starting",
-      "over": false
-    },
-    {
-      "round": 2,
-      "away": "?",
-      "awayAbbrev": "?",
-      "awayW": 0,
-      "home": "?",
-      "homeAbbrev": "?",
+      "home": "ANA",
+      "homeAbbrev": "ANA",
       "homeW": 0,
       "status": "Series starting",
       "over": false
     }
   ],
-  "eliminatedTeams": []
+  "eliminatedTeams": [
+    "BOS",
+    "OTT",
+    "PIT",
+    "LAK",
+    "DAL",
+    "UTA",
+    "EDM"
+  ]
 }
