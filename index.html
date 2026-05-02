@@ -245,21 +245,22 @@ tbody td{padding:10px 12px;font-size:14px;}
 <script>
 const GROUPS = ['Group 1','Group 2','Group 3','Group 4','Group 5','Group 6','Group 7','Group 8','Group 9','Group 10'];
 
-// ─── UPDATE AS TEAMS GET ELIMINATED ───────────────────────────────────────
-const ELIMINATED = new Set([
-  'Stutzle',    // Ottawa out (lost to CAR)
-  'Batherson',  // Ottawa out (lost to CAR)
-  'Hyman',      // Edmonton out (lost to ANA)
-  'McDavid',    // Edmonton out (lost to ANA)
-  'Bouchard',   // Edmonton out (lost to ANA)
-  'Savoie',     // Edmonton out (lost to ANA)
-  'Crosby',     // Pittsburgh out (lost to PHI)
-  'Robertson',  // Dallas out (lost to MIN)
-  'Johnston',   // Dallas out (lost to MIN)
-  'Rantanen',   // Dallas out (lost to MIN) — was traded to DAL
-  'Guenther',   // Utah out (lost to VGK)
-  'Schmaltz',   // Utah out (lost to VGK)
-]);
+// Eliminated players are now pulled automatically from data.json
+// No manual updates needed!
+let ELIMINATED = new Set();
+
+// Team abbreviation for each player — used with auto-elimination data
+const PLAYER_TEAMS = {
+  McDavid:'EDM', MacKinnon:'COL', Rantanen:'DAL', Makar:'COL',
+  Kaprizov:'MIN', Kucherov:'TBL', Necas:'CAR', Suzuki:'MTL',
+  Caufield:'MTL', Robertson:'DAL', Aho:'CAR', Hyman:'EDM',
+  Hagel:'TBL', Svechnikov:'CAR', Demidov:'MTL', Bouchard:'EDM',
+  Marner:'TOR', Crosby:'PIT', Stone:'VGK', Eichel:'VGK',
+  Thompson:'BUF', Stutzle:'OTT', Batherson:'OTT', Guenther:'UTA',
+  Savoie:'EDM', Slafkovsky:'MTL', Ehlers:'CAR', Konecny:'PHI',
+  Schmaltz:'UTA', Dahlin:'BUF', Hutson:'MTL', Johnston:'DAL',
+  Guentzel:'TBL',
+};
 
 const PARTICIPANTS = [
   {name:'Kael',     picks:['McDavid','Robertson','Caufield','Rantanen','Makar','Aho','Hyman','Schmaltz','Konecny','Demidov']},
@@ -313,6 +314,17 @@ async function fetchData(){
     const json = await resp.json();
     stats = json.players || {};
     lastUpdated = json.lastUpdated || null;
+
+    // Auto-load eliminated teams from data.json
+    const elimTeams = new Set(json.eliminatedTeams || []);
+    ELIMINATED = new Set(
+      Object.entries(PLAYER_TEAMS)
+        .filter(([name, team]) => elimTeams.has(team))
+        .map(([name]) => name)
+    );
+
+    // Store series data globally
+    window._seriesData = json.series || [];
     const ts = lastUpdated ? new Date(lastUpdated).toLocaleString() : 'unknown';
     setStatus('ok', `Updated ${ts} — data from NHL API`);
     const el = document.getElementById('lastUpdatedDisplay');
@@ -476,27 +488,15 @@ function renderUpdates(){
 }
 
 function renderSeries(){
-  // ─── UPDATE SCORES HERE AS SERIES PROGRESS ───────────────────────────────
-  const R1 = [
-    {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:4, status:'CAR wins 4-0', over:true},
-    {away:'Philadelphia', home:'Pittsburgh',  awayW:4, homeW:2, status:'PHI wins 4-2', over:true},
-    {away:'Boston',       home:'Buffalo',     awayW:2, homeW:4, status:'BUF wins 4-2', over:true},
-    {away:'Tampa Bay',    home:'Montreal',    awayW:3, homeW:3, status:'Game 7 tomorrow — TBL/MTL tied 3-3'},
-    {away:'LA Kings',     home:'Colorado',    awayW:0, homeW:4, status:'COL wins 4-0', over:true},
-    {away:'Minnesota',    home:'Dallas',      awayW:4, homeW:2, status:'MIN wins 4-2', over:true},
-    {away:'Utah',         home:'Vegas',       awayW:2, homeW:4, status:'VGK wins 4-2', over:true},
-    {away:'Anaheim',      home:'Edmonton',    awayW:4, homeW:2, status:'ANA wins 4-2', over:true},
-  ];
-
-  const R2 = [
-    {away:'Colorado',     home:'Minnesota',   awayW:0, homeW:0, status:'Series starting'},
-    {away:'Vegas',        home:'Anaheim',     awayW:0, homeW:0, status:'Series starting'},
-    {away:'Buffalo',      home:'TBL/MTL',     awayW:0, homeW:0, status:'Waiting on Game 7'},
-    {away:'Carolina',     home:'Philadelphia',awayW:0, homeW:0, status:'Series starting'},
-  ];
+  const allSeries = window._seriesData || [];
+  const r1 = allSeries.filter(s => s.round === 1);
+  const r2 = allSeries.filter(s => s.round === 2);
+  const r3 = allSeries.filter(s => s.round === 3);
+  const r4 = allSeries.filter(s => s.round === 4);
 
   function buildCards(series) {
-    return series.map(s => {
+    if (!series.length) return '<div style="color:var(--silver);font-size:13px;padding:8px 0;">No series yet</div>';
+    return '<div class="series-grid">' + series.map(s => {
       const awayLeads = s.awayW > s.homeW;
       const homeLeads = s.homeW > s.awayW;
       const isOver = s.over || false;
@@ -509,15 +509,16 @@ function renderSeries(){
         </div>
         <div class="series-status${isOver ? ' won' : ''}">${isOver ? '🏆 ' : ''}${s.status}</div>
       </div>`;
-    }).join('');
+    }).join('') + '</div>';
   }
 
-  document.getElementById('seriesContainer').innerHTML = `
-    <div class="round-hdr">— Round 2 —</div>
-    <div class="series-grid">${buildCards(R2)}</div>
-    <div class="round-hdr" style="margin-top:24px;">— Round 1 Results —</div>
-    <div class="series-grid">${buildCards(R1)}</div>
-  `;
+  let html = '';
+  if (r2.length) { html += '<div class="round-hdr">— Round 2 —</div>' + buildCards(r2); }
+  if (r3.length) { html += '<div class="round-hdr" style="margin-top:24px;">— Conference Finals —</div>' + buildCards(r3); }
+  if (r4.length) { html += '<div class="round-hdr" style="margin-top:24px;">— Stanley Cup Final —</div>' + buildCards(r4); }
+  if (r1.length) { html += '<div class="round-hdr" style="margin-top:24px;">— Round 1 Results —</div>' + buildCards(r1); }
+
+  document.getElementById('seriesContainer').innerHTML = html || '<div style="color:var(--silver);padding:20px;">No series data yet.</div>';
 }
 
 function showTab(id,el){
