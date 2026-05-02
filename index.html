@@ -52,6 +52,7 @@ body{background:var(--navy);color:#fff;font-family:'Barlow',sans-serif;min-heigh
 .chip-ot{background:var(--gold);color:var(--navy);}
 
 .section-hdr{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--silver);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+.round-hdr{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:20px 0 8px;opacity:0.7;}
 
 .lb{display:flex;flex-direction:column;gap:8px;}
 .lb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:10px;cursor:pointer;transition:border-color .15s;overflow:hidden;}
@@ -111,6 +112,7 @@ tbody td{padding:10px 12px;font-size:14px;}
 .series-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
 .series-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
 .series-card.series-over{border-color:var(--gold);background:linear-gradient(135deg,rgba(245,166,35,.08),var(--card));}
+.series-card.series-active{border-color:var(--green);background:linear-gradient(135deg,rgba(29,185,84,.05),var(--card));}
 .series-matchup{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
 .series-team{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;flex:1;}
 .series-team.leader{color:var(--gold2);}
@@ -118,6 +120,7 @@ tbody td{padding:10px 12px;font-size:14px;}
 .series-score{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:var(--gold);text-align:center;padding:0 12px;flex-shrink:0;}
 .series-status{font-size:12px;color:var(--silver);text-align:center;}
 .series-status.won{color:var(--gold);font-weight:600;}
+.series-status.live{color:var(--green);font-weight:600;}
 
 .info-box{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:24px;max-width:680px;}
 .info-box h2{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:16px;}
@@ -198,7 +201,7 @@ tbody td{padding:10px 12px;font-size:14px;}
 
 <div class="page" id="page-series">
   <div class="section-hdr">2026 Playoff Series</div>
-  <div class="series-grid" id="seriesContainer"></div>
+  <div id="seriesContainer"></div>
 </div>
 
 <div class="page" id="page-cole">
@@ -242,20 +245,20 @@ tbody td{padding:10px 12px;font-size:14px;}
 <script>
 const GROUPS = ['Group 1','Group 2','Group 3','Group 4','Group 5','Group 6','Group 7','Group 8','Group 9','Group 10'];
 
-// ─── UPDATE THIS LIST AS TEAMS GET ELIMINATED ─────────────────────────────
-// Add the last name key of any player whose team is out
+// ─── UPDATE AS TEAMS GET ELIMINATED ───────────────────────────────────────
 const ELIMINATED = new Set([
-  'Stutzle',    // Ottawa eliminated by Carolina
-  'Batherson',  // Ottawa eliminated by Carolina
-  'Hyman' ,     // Edmonton eliminated by Anaheim
-  'McDavid' ,   // Edmonton eliminated by Anaheim
-  'Bouchard' ,  // Edmonton eliminated by Anaheim
-  'Crosby' ,    // Pittsburgh eliminated by Philadelphia
-  'Robertson' , // Dallas eliminated by Minnesota
-  'Johnston' ,  // Dallas eliminated by Minnesota
-  'Rantanen' ,  // Dallas eliminated by Minnesota
-  'Savoie' ,    // Edmonton eliminated by Anaheim
-  // Add more here as playoffs progress e.g: 'McDavid', 'Hagel' etc
+  'Stutzle',    // Ottawa out (lost to CAR)
+  'Batherson',  // Ottawa out (lost to CAR)
+  'Hyman',      // Edmonton out (lost to ANA)
+  'McDavid',    // Edmonton out (lost to ANA)
+  'Bouchard',   // Edmonton out (lost to ANA)
+  'Savoie',     // Edmonton out (lost to ANA)
+  'Crosby',     // Pittsburgh out (lost to PHI)
+  'Robertson',  // Dallas out (lost to MIN)
+  'Johnston',   // Dallas out (lost to MIN)
+  'Rantanen',   // Dallas out (lost to MIN) — was traded to DAL
+  'Guenther',   // Utah out (lost to VGK)
+  'Schmaltz',   // Utah out (lost to VGK)
 ]);
 
 const PARTICIPANTS = [
@@ -473,31 +476,48 @@ function renderUpdates(){
 }
 
 function renderSeries(){
-  const SERIES = [
+  // ─── UPDATE SCORES HERE AS SERIES PROGRESS ───────────────────────────────
+  const R1 = [
     {away:'Ottawa',       home:'Carolina',    awayW:0, homeW:4, status:'CAR wins 4-0', over:true},
     {away:'Philadelphia', home:'Pittsburgh',  awayW:4, homeW:2, status:'PHI wins 4-2', over:true},
-    {away:'Boston',       home:'Buffalo',     awayW:2, homeW:3, status:'BUF leads 3-2'},
-    {away:'Montreal',     home:'Tampa Bay',   awayW:3, homeW:2, status:'MTL leads 3-2'},
+    {away:'Boston',       home:'Buffalo',     awayW:2, homeW:4, status:'BUF wins 4-2', over:true},
+    {away:'Tampa Bay',    home:'Montreal',    awayW:3, homeW:3, status:'Game 7 tomorrow — TBL/MTL tied 3-3'},
     {away:'LA Kings',     home:'Colorado',    awayW:0, homeW:4, status:'COL wins 4-0', over:true},
     {away:'Minnesota',    home:'Dallas',      awayW:4, homeW:2, status:'MIN wins 4-2', over:true},
-    {away:'Utah',         home:'Vegas',       awayW:2, homeW:3, status:'VGK Leads 3-2'},
-    {away:'Anaheim',      home:'Edmonton',    awayW:4, homeW:2, status:'ANA wins 4-2', over:true}
+    {away:'Utah',         home:'Vegas',       awayW:2, homeW:4, status:'VGK wins 4-2', over:true},
+    {away:'Anaheim',      home:'Edmonton',    awayW:4, homeW:2, status:'ANA wins 4-2', over:true},
   ];
-  let html = '';
-  SERIES.forEach(s => {
-    const awayLeads = s.awayW > s.homeW;
-    const homeLeads = s.homeW > s.awayW;
-    const isOver = s.over || false;
-    html += `<div class="series-card${isOver ? ' series-over' : ''}">
-      <div class="series-matchup">
-        <span class="series-team${awayLeads ? (isOver ? ' winner' : ' leader') : ''}">${s.away}</span>
-        <span class="series-score">${s.awayW}–${s.homeW}</span>
-        <span class="series-team${homeLeads ? (isOver ? ' winner' : ' leader') : ''}" style="text-align:right">${s.home}</span>
-      </div>
-      <div class="series-status${isOver ? ' won' : ''}">${isOver ? '🏆 ' : ''}${s.status}</div>
-    </div>`;
-  });
-  document.getElementById('seriesContainer').innerHTML = html;
+
+  const R2 = [
+    {away:'Colorado',     home:'Minnesota',   awayW:0, homeW:0, status:'Series starting'},
+    {away:'Vegas',        home:'Anaheim',     awayW:0, homeW:0, status:'Series starting'},
+    {away:'Buffalo',      home:'TBL/MTL',     awayW:0, homeW:0, status:'Waiting on Game 7'},
+    {away:'Carolina',     home:'Philadelphia',awayW:0, homeW:0, status:'Series starting'},
+  ];
+
+  function buildCards(series) {
+    return series.map(s => {
+      const awayLeads = s.awayW > s.homeW;
+      const homeLeads = s.homeW > s.awayW;
+      const isOver = s.over || false;
+      const isActive = !isOver && (s.awayW > 0 || s.homeW > 0);
+      return `<div class="series-card${isOver ? ' series-over' : isActive ? ' series-active' : ''}">
+        <div class="series-matchup">
+          <span class="series-team${awayLeads ? (isOver ? ' winner' : ' leader') : ''}">${s.away}</span>
+          <span class="series-score">${s.awayW}–${s.homeW}</span>
+          <span class="series-team${homeLeads ? (isOver ? ' winner' : ' leader') : ''}" style="text-align:right">${s.home}</span>
+        </div>
+        <div class="series-status${isOver ? ' won' : ''}">${isOver ? '🏆 ' : ''}${s.status}</div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('seriesContainer').innerHTML = `
+    <div class="round-hdr">— Round 2 —</div>
+    <div class="series-grid">${buildCards(R2)}</div>
+    <div class="round-hdr" style="margin-top:24px;">— Round 1 Results —</div>
+    <div class="series-grid">${buildCards(R1)}</div>
+  `;
 }
 
 function showTab(id,el){
