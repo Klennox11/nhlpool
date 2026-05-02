@@ -1,50 +1,27 @@
 /**
  * NHL Playoff Pool — Auto Stats Fetcher
- * - Player points + OT goals (existing)
- * - Playoff series scores (new — auto updates series tab)
- * - Eliminated teams (new — auto greys out players)
+ * - Player points + OT goals
+ * - Playoff series scores (auto)
+ * - Eliminated teams (auto)
  */
 
 const https = require('https');
 const fs    = require('fs');
 
 const PLAYER_IDS = {
-  McDavid:    8478402,
-  MacKinnon:  8477492,
-  Rantanen:   8478420,
-  Makar:      8480069,
-  Kaprizov:   8478864,
-  Kucherov:   8476453,
-  Necas:      8480039,
-  Suzuki:     8480018,
-  Caufield:   8481540,
-  Robertson:  8480027,
-  Aho:        8478427,
-  Hyman:      8475786,
-  Hagel:      8479542,
-  Svechnikov: 8480830,
-  Demidov:    8484984,
-  Bouchard:   8480803,
-  Marner:     8478483,
-  Crosby:     8471675,
-  Stone:      8475913,
-  Eichel:     8478403,
-  Thompson:   8479420,
-  Stutzle:    8482116,
-  Batherson:  8480208,
-  Guenther:   8482699,
-  Savoie:     8483512,
-  Slafkovsky: 8483515,
-  Ehlers:     8477940,
-  Konecny:    8478439,
-  Schmaltz:   8477951,
-  Dahlin:     8480839,
-  Hutson:     8483457,
-  Johnston:   8482740,
-  Guentzel:   8477404,
+  McDavid:    8478402, MacKinnon:  8477492, Rantanen:   8478420,
+  Makar:      8480069, Kaprizov:   8478864, Kucherov:   8476453,
+  Necas:      8480039, Suzuki:     8480018, Caufield:   8481540,
+  Robertson:  8480027, Aho:        8478427, Hyman:      8475786,
+  Hagel:      8479542, Svechnikov: 8480830, Demidov:    8484984,
+  Bouchard:   8480803, Marner:     8478483, Crosby:     8471675,
+  Stone:      8475913, Eichel:     8478403, Thompson:   8479420,
+  Stutzle:    8482116, Batherson:  8480208, Guenther:   8482699,
+  Savoie:     8483512, Slafkovsky: 8483515, Ehlers:     8477940,
+  Konecny:    8478439, Schmaltz:   8477951, Dahlin:     8480839,
+  Hutson:     8483457, Johnston:   8482740, Guentzel:   8477404,
 };
 
-// Which team each player plays for (used for elimination detection)
 const PLAYER_TEAMS = {
   McDavid:'EDM', MacKinnon:'COL', Rantanen:'DAL', Makar:'COL',
   Kaprizov:'MIN', Kucherov:'TBL', Necas:'CAR', Suzuki:'MTL',
@@ -68,72 +45,70 @@ function fetchUrl(url) {
       res.on('data', chunk => raw += chunk);
       res.on('end', () => {
         try { resolve(JSON.parse(raw)); }
-        catch (e) { reject(new Error('JSON parse failed: ' + url)); }
+        catch (e) { reject(new Error('JSON parse failed: ' + url + ' body: ' + raw.slice(0,200))); }
       });
     }).on('error', reject);
   });
 }
 
-// Fetch playoff series from NHL API
 async function fetchSeriesData() {
   try {
-    const data = await fetchUrl(`https://api-web.nhle.com/v1/playoff-series/carousel/${SEASON}/`);
+    // Try carousel endpoint
+    const url = `https://api-web.nhle.com/v1/playoff-series/carousel/${SEASON}/`;
+    console.log('Fetching series from:', url);
+    const data = await fetchUrl(url);
+    console.log('Series API top-level keys:', Object.keys(data).join(', '));
+
     const series = [];
     const eliminatedTeams = new Set();
+    const rounds = data.rounds || [];
+    console.log('Rounds found:', rounds.length);
 
-    for (const round of data.rounds || []) {
-      const roundNum = round.roundNumber;
-      for (const s of round.series || []) {
-        const topTeam    = s.topSeedTeam?.abbrev || '?';
-        const bottomTeam = s.bottomSeedTeam?.abbrev || '?';
-        const topWins    = s.topSeedTeamWins || 0;
-        const bottomWins = s.bottomSeedTeamWins || 0;
-        const topName    = s.topSeedTeam?.commonName?.default || topTeam;
-        const bottomName = s.bottomSeedTeam?.commonName?.default || bottomTeam;
+    for (const round of rounds) {
+      const roundNum = round.roundNumber || round.round || 1;
+      const roundSeries = round.series || [];
+      console.log(`Round ${roundNum}: ${roundSeries.length} series`);
 
-        let status = `Series tied ${topWins}-${bottomWins}`;
+      for (const s of roundSeries) {
+        console.log('Series keys:', Object.keys(s).join(', '));
+        const topTeamObj = s.topSeedTeam || {};
+        const botTeamObj = s.bottomSeedTeam || {};
+        const topAbbrev  = topTeamObj.abbrev || topTeamObj.triCode || '?';
+        const botAbbrev  = botTeamObj.abbrev || botTeamObj.triCode || '?';
+        const topName    = topTeamObj.commonName?.default || topTeamObj.name?.default || topAbbrev;
+        const botName    = botTeamObj.commonName?.default || botTeamObj.name?.default || botAbbrev;
+        const topWins    = s.topSeedTeamWins ?? 0;
+        const botWins    = s.bottomSeedTeamWins ?? 0;
+
+        let status = topWins === 0 && botWins === 0 ? 'Series starting' : `Series tied ${topWins}-${botWins}`;
         let over = false;
-        let winner = null;
 
         if (topWins === 4) {
-          status = `${topName} wins 4-${bottomWins}`;
+          status = `${topName} wins 4-${botWins}`;
           over = true;
-          winner = topTeam;
-          eliminatedTeams.add(bottomTeam);
-        } else if (bottomWins === 4) {
-          status = `${bottomName} wins 4-${topWins}`;
+          eliminatedTeams.add(botAbbrev);
+        } else if (botWins === 4) {
+          status = `${botName} wins 4-${topWins}`;
           over = true;
-          winner = bottomTeam;
-          eliminatedTeams.add(topTeam);
-        } else if (topWins > bottomWins) {
-          status = `${topName} leads ${topWins}-${bottomWins}`;
-        } else if (bottomWins > topWins) {
-          status = `${bottomName} leads ${bottomWins}-${topWins}`;
+          eliminatedTeams.add(topAbbrev);
+        } else if (topWins > botWins) {
+          status = `${topName} leads ${topWins}-${botWins}`;
+        } else if (botWins > topWins) {
+          status = `${botName} leads ${botWins}-${topWins}`;
         }
 
-        series.push({
-          round: roundNum,
-          away: topName,
-          awayAbbrev: topTeam,
-          home: bottomName,
-          homeAbbrev: bottomTeam,
-          awayW: topWins,
-          homeW: bottomWins,
-          status,
-          over,
-          winner,
-        });
+        series.push({ round: roundNum, away: topName, awayAbbrev: topAbbrev, awayW: topWins, home: botName, homeAbbrev: botAbbrev, homeW: botWins, status, over });
       }
     }
 
+    console.log(`Series parsed: ${series.length}, Eliminated: ${[...eliminatedTeams].join(', ') || 'none'}`);
     return { series, eliminatedTeams };
   } catch(e) {
-    console.error('Failed to fetch series data:', e.message);
+    console.error('Series fetch failed:', e.message);
     return { series: [], eliminatedTeams: new Set() };
   }
 }
 
-// Get all completed playoff game IDs
 async function getPlayoffGameIds() {
   const gameIds = [];
   const start = new Date(PLAYOFFS_START);
@@ -154,7 +129,6 @@ async function getPlayoffGameIds() {
   return [...new Map(gameIds.map(g => [g.id, g])).values()];
 }
 
-// Get OT goal counts from play-by-play
 async function getOtGoalCounts(gameId) {
   const counts = {};
   try {
@@ -172,7 +146,6 @@ async function getOtGoalCounts(gameId) {
   return counts;
 }
 
-// Get recent points (since yesterday)
 async function fetchRecentPoints() {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
@@ -180,9 +153,7 @@ async function fetchRecentPoints() {
   const recentByName = {};
   for (const [name, pid] of Object.entries(PLAYER_IDS)) {
     try {
-      const data = await fetchUrl(
-        `https://api-web.nhle.com/v1/player/${pid}/game-log/${SEASON}/${GAME_TYPE}`
-      );
+      const data = await fetchUrl(`https://api-web.nhle.com/v1/player/${pid}/game-log/${SEASON}/${GAME_TYPE}`);
       let recentPts = 0;
       for (const game of data.gameLog || []) {
         if ((game.gameDate || '').slice(0, 10) >= cutoffStr) {
@@ -195,13 +166,10 @@ async function fetchRecentPoints() {
   return recentByName;
 }
 
-// Get total playoff points
 async function fetchRegularPoints() {
   const idFilter = Object.values(PLAYER_IDS).map(id => `playerId=${id}`).join(' or ');
   const cayenne  = `(${idFilter}) and seasonId=${SEASON} and gameTypeId=${GAME_TYPE}`;
-  const params   = new URLSearchParams({
-    isAggregate: 'false', isGame: 'false', start: '0', limit: '50', cayenneExp: cayenne,
-  });
+  const params   = new URLSearchParams({ isAggregate:'false', isGame:'false', start:'0', limit:'50', cayenneExp:cayenne });
   const data = await fetchUrl(`https://api.nhle.com/stats/rest/en/skater/summary?${params}`);
   const byId = {};
   for (const row of data.data || []) byId[row.playerId] = row.points || 0;
@@ -211,65 +179,54 @@ async function fetchRegularPoints() {
 async function main() {
   console.log('=== NHL Playoff Pool Stats Fetcher ===\n');
 
-  // Step 1: Series data + eliminated teams
-  console.log('Fetching playoff series data...');
+  console.log('Step 1: Fetching series data...');
   const { series, eliminatedTeams } = await fetchSeriesData();
-  console.log(`Found ${series.length} series. Eliminated teams: ${[...eliminatedTeams].join(', ') || 'none'}`);
 
-  // Step 2: Total points
-  console.log('Fetching total playoff points...');
+  console.log('\nStep 2: Fetching total points...');
   const ptsByid = await fetchRegularPoints();
 
-  // Step 3: Recent points
-  console.log('Fetching recent points (last 24 hrs)...');
+  console.log('\nStep 3: Fetching recent points...');
   const recentByName = await fetchRecentPoints();
 
-  // Step 4: OT goal counts
-  console.log('Checking play-by-play for OT goals...');
+  console.log('\nStep 4: Fetching OT goals...');
   const games = await getPlayoffGameIds();
   console.log(`Found ${games.length} completed games.`);
 
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   const cutoffStr = yesterday.toISOString().split('T')[0];
+  const otGoalCounts = {}, recentOtCounts = {};
 
-  const otGoalCounts   = {};
-  const recentOtCounts = {};
   for (const game of games) {
     const counts = await getOtGoalCounts(game.id);
     for (const [pid, count] of Object.entries(counts)) {
       const pidNum = parseInt(pid);
       otGoalCounts[pidNum]   = (otGoalCounts[pidNum] || 0) + count;
-      if (game.date >= cutoffStr) {
-        recentOtCounts[pidNum] = (recentOtCounts[pidNum] || 0) + count;
-      }
+      if (game.date >= cutoffStr) recentOtCounts[pidNum] = (recentOtCounts[pidNum] || 0) + count;
     }
   }
 
-  // Step 5: Build player results + elimination flags
   const players = {};
   for (const [name, pid] of Object.entries(PLAYER_IDS)) {
-    const team      = PLAYER_TEAMS[name] || '';
-    const eliminated = eliminatedTeams.has(team);
-    const pts        = ptsByid[pid] || 0;
-    const otPts      = otGoalCounts[pid] || 0;
-    const recentPts  = recentByName[name] || 0;
+    const team        = PLAYER_TEAMS[name] || '';
+    const eliminated  = eliminatedTeams.has(team);
+    const pts         = ptsByid[pid] || 0;
+    const otPts       = otGoalCounts[pid] || 0;
+    const recentPts   = recentByName[name] || 0;
     const recentOtPts = recentOtCounts[pid] || 0;
     players[name] = { pts, otPts, recentPts, recentOtPts, eliminated, team };
-    console.log(`  ${name.padEnd(15)} ${pts}pts ${otPts}OT ${eliminated ? '❌ ELIM' : '✅'}`);
+    console.log(`  ${name.padEnd(15)} ${pts}pts ${otPts}OT ${eliminated ? '❌' : '✅'} (${team})`);
   }
 
   const output = {
-    season:      SEASON,
-    gameType:    GAME_TYPE,
+    season: SEASON, gameType: GAME_TYPE,
     lastUpdated: new Date().toISOString(),
-    players,
-    series,
+    players, series,
     eliminatedTeams: [...eliminatedTeams],
   };
 
   fs.writeFileSync('data.json', JSON.stringify(output, null, 2));
-  console.log(`\nDone — data.json written with ${Object.keys(players).length} players and ${series.length} series.`);
+  console.log(`\nDone — ${Object.keys(players).length} players, ${series.length} series.`);
 }
 
 main().catch(err => {
