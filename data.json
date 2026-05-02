@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-02T22:48:00.347Z",
+  "lastUpdated": "2026-05-02T22:54:58.394Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -273,145 +273,133 @@
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 1,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 2,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 2,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 2,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     },
     {
       "round": 2,
       "away": "?",
       "awayAbbrev": "?",
+      "awayW": 0,
       "home": "?",
       "homeAbbrev": "?",
-      "awayW": 0,
       "homeW": 0,
-      "status": "Series tied 0-0",
-      "over": false,
-      "winner": null
+      "status": "Series starting",
+      "over": false
     }
   ],
   "eliminatedTeams": []
