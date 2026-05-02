@@ -53,32 +53,26 @@ function fetchUrl(url) {
 
 async function fetchSeriesData() {
   try {
-    // Try carousel endpoint
     const url = `https://api-web.nhle.com/v1/playoff-series/carousel/${SEASON}/`;
-    console.log('Fetching series from:', url);
     const data = await fetchUrl(url);
-    console.log('Series API top-level keys:', Object.keys(data).join(', '));
-
     const series = [];
     const eliminatedTeams = new Set();
     const rounds = data.rounds || [];
-    console.log('Rounds found:', rounds.length);
 
     for (const round of rounds) {
-      const roundNum = round.roundNumber || round.round || 1;
+      const roundNum = round.roundNumber || 1;
       const roundSeries = round.series || [];
-      console.log(`Round ${roundNum}: ${roundSeries.length} series`);
 
       for (const s of roundSeries) {
-        console.log('Series keys:', Object.keys(s).join(', '));
-        const topTeamObj = s.topSeedTeam || {};
-        const botTeamObj = s.bottomSeedTeam || {};
-        const topAbbrev  = topTeamObj.abbrev || topTeamObj.triCode || '?';
-        const botAbbrev  = botTeamObj.abbrev || botTeamObj.triCode || '?';
-        const topName    = topTeamObj.commonName?.default || topTeamObj.name?.default || topAbbrev;
-        const botName    = botTeamObj.commonName?.default || botTeamObj.name?.default || botAbbrev;
-        const topWins    = s.topSeedTeamWins ?? 0;
-        const botWins    = s.bottomSeedTeamWins ?? 0;
+        // API uses topSeed/bottomSeed with wins inside each object
+        const top = s.topSeed || {};
+        const bot = s.bottomSeed || {};
+        const topAbbrev = top.abbrev || top.triCode || '?';
+        const botAbbrev = bot.abbrev || bot.triCode || '?';
+        const topName   = top.commonName?.default || top.placeName?.default || topAbbrev;
+        const botName   = bot.commonName?.default || bot.placeName?.default || botAbbrev;
+        const topWins   = top.wins ?? 0;
+        const botWins   = bot.wins ?? 0;
 
         let status = topWins === 0 && botWins === 0 ? 'Series starting' : `Series tied ${topWins}-${botWins}`;
         let over = false;
