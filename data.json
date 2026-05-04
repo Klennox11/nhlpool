@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-03T23:29:30.663Z",
+  "lastUpdated": "2026-05-04T01:02:19.630Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -48,7 +48,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "TBL"
     },
     "Necas": {
@@ -104,13 +104,13 @@
       "otPts": 1,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "TBL"
     },
     "Svechnikov": {
       "pts": 1,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -264,7 +264,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "TBL"
     }
   },
@@ -287,9 +287,9 @@
       "awayW": 3,
       "home": "MTL",
       "homeAbbrev": "MTL",
-      "homeW": 3,
-      "status": "Series tied 3-3",
-      "over": false
+      "homeW": 4,
+      "status": "MTL wins 4-3",
+      "over": true
     },
     {
       "round": 1,
@@ -395,8 +395,8 @@
       "away": "BUF",
       "awayAbbrev": "BUF",
       "awayW": 0,
-      "home": "TBD",
-      "homeAbbrev": "TBD",
+      "home": "MTL",
+      "homeAbbrev": "MTL",
       "homeW": 0,
       "status": "Series starting",
       "over": false
@@ -404,6 +404,7 @@
   ],
   "eliminatedTeams": [
     "BOS",
+    "TBL",
     "OTT",
     "PIT",
     "LAK",
