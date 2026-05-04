@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-04T01:02:19.630Z",
+  "lastUpdated": "2026-05-04T08:44:23.820Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -12,9 +12,9 @@
       "team": "EDM"
     },
     "MacKinnon": {
-      "pts": 4,
+      "pts": 7,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -28,17 +28,17 @@
       "team": "DAL"
     },
     "Makar": {
-      "pts": 2,
+      "pts": 5,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
     },
     "Kaprizov": {
-      "pts": 9,
+      "pts": 10,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MIN"
@@ -52,17 +52,17 @@
       "team": "TBL"
     },
     "Necas": {
-      "pts": 2,
+      "pts": 5,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
     },
     "Suzuki": {
-      "pts": 5,
+      "pts": 6,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -244,9 +244,9 @@
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 5,
+      "pts": 6,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -359,6 +359,17 @@
     },
     {
       "round": 2,
+      "away": "BUF",
+      "awayAbbrev": "BUF",
+      "awayW": 0,
+      "home": "MTL",
+      "homeAbbrev": "MTL",
+      "homeW": 0,
+      "status": "Series starting",
+      "over": false
+    },
+    {
+      "round": 2,
       "away": "CAR",
       "awayAbbrev": "CAR",
       "awayW": 1,
@@ -372,11 +383,11 @@
       "round": 2,
       "away": "COL",
       "awayAbbrev": "COL",
-      "awayW": 0,
+      "awayW": 1,
       "home": "MIN",
       "homeAbbrev": "MIN",
       "homeW": 0,
-      "status": "Series starting",
+      "status": "COL leads 1-0",
       "over": false
     },
     {
@@ -386,17 +397,6 @@
       "awayW": 0,
       "home": "ANA",
       "homeAbbrev": "ANA",
-      "homeW": 0,
-      "status": "Series starting",
-      "over": false
-    },
-    {
-      "round": 2,
-      "away": "BUF",
-      "awayAbbrev": "BUF",
-      "awayW": 0,
-      "home": "MTL",
-      "homeAbbrev": "MTL",
       "homeW": 0,
       "status": "Series starting",
       "over": false
