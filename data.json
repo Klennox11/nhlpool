@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-04T21:44:38.370Z",
+  "lastUpdated": "2026-05-05T07:32:18.664Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -14,7 +14,7 @@
     "MacKinnon": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -30,7 +30,7 @@
     "Makar": {
       "pts": 5,
       "otPts": 0,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -38,7 +38,7 @@
     "Kaprizov": {
       "pts": 10,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MIN"
@@ -54,7 +54,7 @@
     "Necas": {
       "pts": 5,
       "otPts": 0,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -62,7 +62,7 @@
     "Suzuki": {
       "pts": 6,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -132,9 +132,9 @@
       "team": "EDM"
     },
     "Marner": {
-      "pts": 7,
+      "pts": 9,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -212,9 +212,9 @@
       "team": "MTL"
     },
     "Ehlers": {
-      "pts": 1,
+      "pts": 3,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -246,7 +246,7 @@
     "Hutson": {
       "pts": 6,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -372,11 +372,11 @@
       "round": 2,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 1,
+      "awayW": 2,
       "home": "PHI",
       "homeAbbrev": "PHI",
       "homeW": 0,
-      "status": "CAR leads 1-0",
+      "status": "CAR leads 2-0",
       "over": false
     },
     {
@@ -394,11 +394,11 @@
       "round": 2,
       "away": "VGK",
       "awayAbbrev": "VGK",
-      "awayW": 0,
+      "awayW": 1,
       "home": "ANA",
       "homeAbbrev": "ANA",
       "homeW": 0,
-      "status": "Series starting",
+      "status": "VGK leads 1-0",
       "over": false
     }
   ],
