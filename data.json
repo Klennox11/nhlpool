@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-06T00:09:58.335Z",
+  "lastUpdated": "2026-05-06T16:12:17.525Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -12,9 +12,9 @@
       "team": "EDM"
     },
     "MacKinnon": {
-      "pts": 7,
+      "pts": 10,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -36,9 +36,9 @@
       "team": "COL"
     },
     "Kaprizov": {
-      "pts": 10,
+      "pts": 11,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MIN"
@@ -52,9 +52,9 @@
       "team": "TBL"
     },
     "Necas": {
-      "pts": 5,
+      "pts": 7,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -383,11 +383,11 @@
       "round": 2,
       "away": "COL",
       "awayAbbrev": "COL",
-      "awayW": 1,
+      "awayW": 2,
       "home": "MIN",
       "homeAbbrev": "MIN",
       "homeW": 0,
-      "status": "COL leads 1-0",
+      "status": "COL leads 2-0",
       "over": false
     },
     {
