@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-05T23:35:56.386Z",
+  "lastUpdated": "2026-05-06T00:01:31.261Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -134,7 +134,7 @@
     "Marner": {
       "pts": 9,
       "otPts": 1,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -214,7 +214,7 @@
     "Ehlers": {
       "pts": 3,
       "otPts": 1,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
