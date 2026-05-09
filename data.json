@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-08T21:36:27.352Z",
+  "lastUpdated": "2026-05-09T07:23:29.622Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -60,9 +60,9 @@
       "team": "CAR"
     },
     "Suzuki": {
-      "pts": 7,
+      "pts": 8,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -86,7 +86,7 @@
     "Aho": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -110,7 +110,7 @@
     "Svechnikov": {
       "pts": 3,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -132,9 +132,9 @@
       "team": "EDM"
     },
     "Marner": {
-      "pts": 9,
+      "pts": 13,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 4,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -148,17 +148,17 @@
       "team": "PIT"
     },
     "Stone": {
-      "pts": 6,
+      "pts": 7,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
     },
     "Eichel": {
-      "pts": 10,
+      "pts": 11,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -214,7 +214,7 @@
     "Ehlers": {
       "pts": 4,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -244,9 +244,9 @@
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 6,
+      "pts": 7,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -364,8 +364,8 @@
       "awayW": 1,
       "home": "MTL",
       "homeAbbrev": "MTL",
-      "homeW": 0,
-      "status": "BUF leads 1-0",
+      "homeW": 1,
+      "status": "Series tied 1-1",
       "over": false
     },
     {
@@ -394,11 +394,11 @@
       "round": 2,
       "away": "VGK",
       "awayAbbrev": "VGK",
-      "awayW": 1,
+      "awayW": 2,
       "home": "ANA",
       "homeAbbrev": "ANA",
       "homeW": 1,
-      "status": "Series tied 1-1",
+      "status": "VGK leads 2-1",
       "over": false
     }
   ],
