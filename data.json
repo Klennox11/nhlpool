@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-09T23:32:32.724Z",
+  "lastUpdated": "2026-05-10T07:48:29.244Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -12,9 +12,9 @@
       "team": "EDM"
     },
     "MacKinnon": {
-      "pts": 10,
+      "pts": 11,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -36,9 +36,9 @@
       "team": "COL"
     },
     "Kaprizov": {
-      "pts": 11,
+      "pts": 14,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MIN"
@@ -62,7 +62,7 @@
     "Suzuki": {
       "pts": 8,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -134,7 +134,7 @@
     "Marner": {
       "pts": 13,
       "otPts": 1,
-      "recentPts": 4,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -150,7 +150,7 @@
     "Stone": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -158,7 +158,7 @@
     "Eichel": {
       "pts": 11,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -220,11 +220,11 @@
       "team": "CAR"
     },
     "Konecny": {
-      "pts": 4,
+      "pts": 5,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "PHI"
     },
     "Schmaltz": {
@@ -246,7 +246,7 @@
     "Hutson": {
       "pts": 7,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -372,12 +372,12 @@
       "round": 2,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 3,
+      "awayW": 4,
       "home": "PHI",
       "homeAbbrev": "PHI",
       "homeW": 0,
-      "status": "CAR leads 3-0",
-      "over": false
+      "status": "CAR wins 4-0",
+      "over": true
     },
     {
       "round": 2,
@@ -386,8 +386,8 @@
       "awayW": 2,
       "home": "MIN",
       "homeAbbrev": "MIN",
-      "homeW": 0,
-      "status": "COL leads 2-0",
+      "homeW": 1,
+      "status": "COL leads 2-1",
       "over": false
     },
     {
@@ -400,6 +400,17 @@
       "homeW": 1,
       "status": "VGK leads 2-1",
       "over": false
+    },
+    {
+      "round": 2,
+      "away": "TBD",
+      "awayAbbrev": "TBD",
+      "awayW": 0,
+      "home": "CAR",
+      "homeAbbrev": "CAR",
+      "homeW": 0,
+      "status": "Series starting",
+      "over": false
     }
   ],
   "eliminatedTeams": [
@@ -410,6 +421,7 @@
     "LAK",
     "DAL",
     "UTA",
-    "EDM"
+    "EDM",
+    "PHI"
   ]
 }
