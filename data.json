@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-10T23:37:30.384Z",
+  "lastUpdated": "2026-05-11T11:47:26.551Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -14,7 +14,7 @@
     "MacKinnon": {
       "pts": 11,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -38,7 +38,7 @@
     "Kaprizov": {
       "pts": 14,
       "otPts": 1,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MIN"
@@ -60,17 +60,17 @@
       "team": "CAR"
     },
     "Suzuki": {
-      "pts": 8,
+      "pts": 9,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
     },
     "Caufield": {
-      "pts": 4,
+      "pts": 6,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -116,9 +116,9 @@
       "team": "CAR"
     },
     "Demidov": {
-      "pts": 2,
+      "pts": 3,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -132,9 +132,9 @@
       "team": "EDM"
     },
     "Marner": {
-      "pts": 13,
+      "pts": 16,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -156,17 +156,17 @@
       "team": "VGK"
     },
     "Eichel": {
-      "pts": 11,
+      "pts": 13,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
     },
     "Thompson": {
-      "pts": 7,
+      "pts": 9,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
@@ -204,9 +204,9 @@
       "team": "EDM"
     },
     "Slafkovsky": {
-      "pts": 4,
+      "pts": 5,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -222,7 +222,7 @@
     "Konecny": {
       "pts": 5,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": true,
       "team": "PHI"
@@ -236,17 +236,17 @@
       "team": "UTA"
     },
     "Dahlin": {
-      "pts": 4,
+      "pts": 6,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 7,
+      "pts": 9,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -364,8 +364,8 @@
       "awayW": 1,
       "home": "MTL",
       "homeAbbrev": "MTL",
-      "homeW": 1,
-      "status": "Series tied 1-1",
+      "homeW": 2,
+      "status": "MTL leads 2-1",
       "over": false
     },
     {
@@ -397,12 +397,12 @@
       "awayW": 2,
       "home": "ANA",
       "homeAbbrev": "ANA",
-      "homeW": 1,
-      "status": "VGK leads 2-1",
+      "homeW": 2,
+      "status": "Series tied 2-2",
       "over": false
     },
     {
-      "round": 2,
+      "round": 3,
       "away": "TBD",
       "awayAbbrev": "TBD",
       "awayW": 0,
