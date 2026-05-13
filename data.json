@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-12T18:25:32.546Z",
+  "lastUpdated": "2026-05-13T00:15:58.120Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -14,7 +14,7 @@
     "MacKinnon": {
       "pts": 12,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -54,7 +54,7 @@
     "Necas": {
       "pts": 9,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
