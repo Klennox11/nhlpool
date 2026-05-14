@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-13T18:28:34.856Z",
+  "lastUpdated": "2026-05-14T07:35:51.068Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -12,9 +12,9 @@
       "team": "EDM"
     },
     "MacKinnon": {
-      "pts": 12,
+      "pts": 13,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -36,11 +36,11 @@
       "team": "COL"
     },
     "Kaprizov": {
-      "pts": 14,
+      "pts": 15,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "MIN"
     },
     "Kucherov": {
@@ -52,10 +52,10 @@
       "team": "TBL"
     },
     "Necas": {
-      "pts": 9,
-      "otPts": 0,
-      "recentPts": 0,
-      "recentOtPts": 0,
+      "pts": 11,
+      "otPts": 1,
+      "recentPts": 2,
+      "recentOtPts": 1,
       "eliminated": false,
       "team": "CAR"
     },
@@ -70,7 +70,7 @@
     "Caufield": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -118,7 +118,7 @@
     "Demidov": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -158,15 +158,15 @@
     "Eichel": {
       "pts": 15,
       "otPts": 2,
-      "recentPts": 2,
-      "recentOtPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
     },
     "Thompson": {
       "pts": 11,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
@@ -206,7 +206,7 @@
     "Slafkovsky": {
       "pts": 6,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -238,7 +238,7 @@
     "Dahlin": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
@@ -246,7 +246,7 @@
     "Hutson": {
       "pts": 10,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -383,12 +383,12 @@
       "round": 2,
       "away": "COL",
       "awayAbbrev": "COL",
-      "awayW": 3,
+      "awayW": 4,
       "home": "MIN",
       "homeAbbrev": "MIN",
       "homeW": 1,
-      "status": "COL leads 3-1",
-      "over": false
+      "status": "COL wins 4-1",
+      "over": true
     },
     {
       "round": 2,
@@ -411,6 +411,17 @@
       "homeW": 0,
       "status": "Series starting",
       "over": false
+    },
+    {
+      "round": 3,
+      "away": "COL",
+      "awayAbbrev": "COL",
+      "awayW": 0,
+      "home": "TBD",
+      "homeAbbrev": "TBD",
+      "homeW": 0,
+      "status": "Series starting",
+      "over": false
     }
   ],
   "eliminatedTeams": [
@@ -422,6 +433,7 @@
     "DAL",
     "UTA",
     "EDM",
-    "PHI"
+    "PHI",
+    "MIN"
   ]
 }
