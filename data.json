@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-16T23:37:08.245Z",
+  "lastUpdated": "2026-05-17T08:34:25.051Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -68,9 +68,9 @@
       "team": "MTL"
     },
     "Caufield": {
-      "pts": 8,
+      "pts": 9,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -116,9 +116,9 @@
       "team": "CAR"
     },
     "Demidov": {
-      "pts": 6,
+      "pts": 7,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -164,9 +164,9 @@
       "team": "VGK"
     },
     "Thompson": {
-      "pts": 11,
+      "pts": 15,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 4,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
@@ -236,17 +236,17 @@
       "team": "UTA"
     },
     "Dahlin": {
-      "pts": 8,
+      "pts": 13,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 5,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 12,
+      "pts": 13,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -361,11 +361,11 @@
       "round": 2,
       "away": "BUF",
       "awayAbbrev": "BUF",
-      "awayW": 2,
+      "awayW": 3,
       "home": "MTL",
       "homeAbbrev": "MTL",
       "homeW": 3,
-      "status": "MTL leads 3-2",
+      "status": "Series tied 3-3",
       "over": false
     },
     {
