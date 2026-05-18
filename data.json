@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-17T18:12:29.427Z",
+  "lastUpdated": "2026-05-18T00:13:44.807Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -70,7 +70,7 @@
     "Caufield": {
       "pts": 9,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -118,7 +118,7 @@
     "Demidov": {
       "pts": 7,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -166,7 +166,7 @@
     "Thompson": {
       "pts": 15,
       "otPts": 0,
-      "recentPts": 4,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
@@ -238,7 +238,7 @@
     "Dahlin": {
       "pts": 13,
       "otPts": 0,
-      "recentPts": 5,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "BUF"
@@ -246,7 +246,7 @@
     "Hutson": {
       "pts": 13,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
