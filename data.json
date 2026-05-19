@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-18T20:21:02.098Z",
+  "lastUpdated": "2026-05-19T08:46:39.050Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -60,9 +60,9 @@
       "team": "CAR"
     },
     "Suzuki": {
-      "pts": 12,
+      "pts": 13,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -168,7 +168,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "BUF"
     },
     "Stutzle": {
@@ -236,17 +236,17 @@
       "team": "UTA"
     },
     "Dahlin": {
-      "pts": 13,
+      "pts": 14,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 13,
+      "pts": 14,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -364,9 +364,9 @@
       "awayW": 3,
       "home": "MTL",
       "homeAbbrev": "MTL",
-      "homeW": 3,
-      "status": "Series tied 3-3",
-      "over": false
+      "homeW": 4,
+      "status": "MTL wins 4-3",
+      "over": true
     },
     {
       "round": 2,
@@ -403,22 +403,22 @@
     },
     {
       "round": 3,
-      "away": "COL",
-      "awayAbbrev": "COL",
+      "away": "CAR",
+      "awayAbbrev": "CAR",
       "awayW": 0,
-      "home": "VGK",
-      "homeAbbrev": "VGK",
+      "home": "MTL",
+      "homeAbbrev": "MTL",
       "homeW": 0,
       "status": "Series starting",
       "over": false
     },
     {
       "round": 3,
-      "away": "TBD",
-      "awayAbbrev": "TBD",
+      "away": "COL",
+      "awayAbbrev": "COL",
       "awayW": 0,
-      "home": "CAR",
-      "homeAbbrev": "CAR",
+      "home": "VGK",
+      "homeAbbrev": "VGK",
       "homeW": 0,
       "status": "Series starting",
       "over": false
@@ -433,6 +433,7 @@
     "DAL",
     "UTA",
     "EDM",
+    "BUF",
     "PHI",
     "MIN",
     "ANA"
