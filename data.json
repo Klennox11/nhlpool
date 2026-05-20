@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-19T22:41:37.172Z",
+  "lastUpdated": "2026-05-20T10:37:43.481Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -62,7 +62,7 @@
     "Suzuki": {
       "pts": 13,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -238,7 +238,7 @@
     "Dahlin": {
       "pts": 14,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": true,
       "team": "BUF"
@@ -246,7 +246,7 @@
     "Hutson": {
       "pts": 14,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
