@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-22T02:37:39.222Z",
+  "lastUpdated": "2026-05-22T06:42:46.302Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -60,17 +60,17 @@
       "team": "CAR"
     },
     "Suzuki": {
-      "pts": 13,
+      "pts": 16,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
     },
     "Caufield": {
-      "pts": 9,
+      "pts": 11,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -84,9 +84,9 @@
       "team": "DAL"
     },
     "Aho": {
-      "pts": 4,
+      "pts": 5,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -108,17 +108,17 @@
       "team": "TBL"
     },
     "Svechnikov": {
-      "pts": 3,
+      "pts": 4,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
     },
     "Demidov": {
-      "pts": 7,
+      "pts": 8,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -204,9 +204,9 @@
       "team": "EDM"
     },
     "Slafkovsky": {
-      "pts": 9,
+      "pts": 12,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -408,8 +408,8 @@
       "awayW": 0,
       "home": "MTL",
       "homeAbbrev": "MTL",
-      "homeW": 0,
-      "status": "Series starting",
+      "homeW": 1,
+      "status": "MTL leads 1-0",
       "over": false
     },
     {
