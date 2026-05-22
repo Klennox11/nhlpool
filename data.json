@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-21T22:14:03.104Z",
+  "lastUpdated": "2026-05-22T02:37:39.222Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -14,7 +14,7 @@
     "MacKinnon": {
       "pts": 14,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -134,7 +134,7 @@
     "Marner": {
       "pts": 19,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -158,7 +158,7 @@
     "Eichel": {
       "pts": 16,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
