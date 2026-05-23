@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-23T02:14:32.038Z",
+  "lastUpdated": "2026-05-23T06:08:18.380Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -156,9 +156,9 @@
       "team": "VGK"
     },
     "Eichel": {
-      "pts": 16,
+      "pts": 18,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -419,8 +419,8 @@
       "awayW": 0,
       "home": "VGK",
       "homeAbbrev": "VGK",
-      "homeW": 1,
-      "status": "VGK leads 1-0",
+      "homeW": 2,
+      "status": "VGK leads 2-0",
       "over": false
     }
   ],
