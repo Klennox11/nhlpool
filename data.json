@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-22T22:01:27.565Z",
+  "lastUpdated": "2026-05-23T02:14:32.038Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -62,7 +62,7 @@
     "Suzuki": {
       "pts": 16,
       "otPts": 1,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -70,7 +70,7 @@
     "Caufield": {
       "pts": 11,
       "otPts": 0,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -86,7 +86,7 @@
     "Aho": {
       "pts": 5,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -110,7 +110,7 @@
     "Svechnikov": {
       "pts": 4,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -118,7 +118,7 @@
     "Demidov": {
       "pts": 8,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -206,7 +206,7 @@
     "Slafkovsky": {
       "pts": 12,
       "otPts": 1,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
