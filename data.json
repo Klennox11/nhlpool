@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-23T21:45:27.263Z",
+  "lastUpdated": "2026-05-24T02:33:15.040Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -158,7 +158,7 @@
     "Eichel": {
       "pts": 18,
       "otPts": 2,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -212,10 +212,10 @@
       "team": "MTL"
     },
     "Ehlers": {
-      "pts": 4,
-      "otPts": 1,
-      "recentPts": 0,
-      "recentOtPts": 0,
+      "pts": 6,
+      "otPts": 2,
+      "recentPts": 2,
+      "recentOtPts": 1,
       "eliminated": false,
       "team": "CAR"
     },
@@ -405,11 +405,11 @@
       "round": 3,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 0,
+      "awayW": 1,
       "home": "MTL",
       "homeAbbrev": "MTL",
       "homeW": 1,
-      "status": "MTL leads 1-0",
+      "status": "Series tied 1-1",
       "over": false
     },
     {
