@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-25T02:41:42.464Z",
+  "lastUpdated": "2026-05-25T07:06:13.004Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -12,9 +12,9 @@
       "team": "EDM"
     },
     "MacKinnon": {
-      "pts": 14,
+      "pts": 15,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "COL"
@@ -52,9 +52,9 @@
       "team": "TBL"
     },
     "Necas": {
-      "pts": 11,
+      "pts": 12,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -132,9 +132,9 @@
       "team": "EDM"
     },
     "Marner": {
-      "pts": 19,
+      "pts": 21,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -148,9 +148,9 @@
       "team": "PIT"
     },
     "Stone": {
-      "pts": 7,
+      "pts": 9,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -419,8 +419,8 @@
       "awayW": 0,
       "home": "VGK",
       "homeAbbrev": "VGK",
-      "homeW": 2,
-      "status": "VGK leads 2-0",
+      "homeW": 3,
+      "status": "VGK leads 3-0",
       "over": false
     }
   ],
