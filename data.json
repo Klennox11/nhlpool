@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-26T02:31:02.269Z",
+  "lastUpdated": "2026-05-26T06:40:57.898Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -68,9 +68,9 @@
       "team": "MTL"
     },
     "Caufield": {
-      "pts": 11,
+      "pts": 12,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -108,17 +108,17 @@
       "team": "TBL"
     },
     "Svechnikov": {
-      "pts": 4,
-      "otPts": 0,
-      "recentPts": 0,
-      "recentOtPts": 0,
+      "pts": 5,
+      "otPts": 1,
+      "recentPts": 1,
+      "recentOtPts": 1,
       "eliminated": false,
       "team": "CAR"
     },
     "Demidov": {
-      "pts": 8,
+      "pts": 9,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -244,9 +244,9 @@
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 14,
+      "pts": 15,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -405,11 +405,11 @@
       "round": 3,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 1,
+      "awayW": 2,
       "home": "MTL",
       "homeAbbrev": "MTL",
       "homeW": 1,
-      "status": "Series tied 1-1",
+      "status": "CAR leads 2-1",
       "over": false
     },
     {
