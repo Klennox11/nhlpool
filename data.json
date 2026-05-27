@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-27T02:40:58.666Z",
+  "lastUpdated": "2026-05-27T06:57:55.430Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -16,7 +16,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "COL"
     },
     "Rantanen": {
@@ -32,7 +32,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "COL"
     },
     "Kaprizov": {
@@ -52,9 +52,9 @@
       "team": "TBL"
     },
     "Necas": {
-      "pts": 12,
+      "pts": 13,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -148,9 +148,9 @@
       "team": "PIT"
     },
     "Stone": {
-      "pts": 9,
+      "pts": 10,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -419,8 +419,19 @@
       "awayW": 0,
       "home": "VGK",
       "homeAbbrev": "VGK",
-      "homeW": 3,
-      "status": "VGK leads 3-0",
+      "homeW": 4,
+      "status": "VGK wins 4-0",
+      "over": true
+    },
+    {
+      "round": 4,
+      "away": "VGK",
+      "awayAbbrev": "VGK",
+      "awayW": 0,
+      "home": "TBD",
+      "homeAbbrev": "TBD",
+      "homeW": 0,
+      "status": "Series starting",
       "over": false
     }
   ],
@@ -436,6 +447,7 @@
     "BUF",
     "PHI",
     "MIN",
-    "ANA"
+    "ANA",
+    "COL"
   ]
 }
