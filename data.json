@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-26T22:16:05.459Z",
+  "lastUpdated": "2026-05-27T02:40:58.666Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -70,7 +70,7 @@
     "Caufield": {
       "pts": 12,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -110,15 +110,15 @@
     "Svechnikov": {
       "pts": 5,
       "otPts": 1,
-      "recentPts": 1,
-      "recentOtPts": 1,
+      "recentPts": 0,
+      "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
     },
     "Demidov": {
       "pts": 9,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
@@ -246,7 +246,7 @@
     "Hutson": {
       "pts": 15,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "MTL"
