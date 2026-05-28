@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-27T22:26:33.293Z",
+  "lastUpdated": "2026-05-28T02:27:35.310Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -54,7 +54,7 @@
     "Necas": {
       "pts": 13,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -150,7 +150,7 @@
     "Stone": {
       "pts": 10,
       "otPts": 0,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
