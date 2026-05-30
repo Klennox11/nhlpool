@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-05-30T02:26:34.179Z",
+  "lastUpdated": "2026-05-30T06:18:05.390Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -64,15 +64,15 @@
       "otPts": 1,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "MTL"
     },
     "Caufield": {
-      "pts": 12,
+      "pts": 13,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "MTL"
     },
     "Robertson": {
@@ -84,9 +84,9 @@
       "team": "DAL"
     },
     "Aho": {
-      "pts": 6,
+      "pts": 7,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -108,9 +108,9 @@
       "team": "TBL"
     },
     "Svechnikov": {
-      "pts": 6,
+      "pts": 7,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -120,7 +120,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "MTL"
     },
     "Bouchard": {
@@ -208,13 +208,13 @@
       "otPts": 1,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "MTL"
     },
     "Ehlers": {
-      "pts": 8,
+      "pts": 9,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -244,11 +244,11 @@
       "team": "BUF"
     },
     "Hutson": {
-      "pts": 15,
+      "pts": 16,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "MTL"
     },
     "Johnston": {
@@ -405,12 +405,12 @@
       "round": 3,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 3,
+      "awayW": 4,
       "home": "MTL",
       "homeAbbrev": "MTL",
       "homeW": 1,
-      "status": "CAR leads 3-1",
-      "over": false
+      "status": "CAR wins 4-1",
+      "over": true
     },
     {
       "round": 3,
@@ -425,11 +425,11 @@
     },
     {
       "round": 4,
-      "away": "VGK",
-      "awayAbbrev": "VGK",
+      "away": "CAR",
+      "awayAbbrev": "CAR",
       "awayW": 0,
-      "home": "TBD",
-      "homeAbbrev": "TBD",
+      "home": "VGK",
+      "homeAbbrev": "VGK",
       "homeW": 0,
       "status": "Series starting",
       "over": false
@@ -448,6 +448,7 @@
     "PHI",
     "MIN",
     "ANA",
+    "MTL",
     "COL"
   ]
 }
