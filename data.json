@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-03T02:57:55.231Z",
+  "lastUpdated": "2026-06-03T08:15:35.894Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -132,9 +132,9 @@
       "team": "EDM"
     },
     "Marner": {
-      "pts": 21,
+      "pts": 22,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -156,9 +156,9 @@
       "team": "VGK"
     },
     "Eichel": {
-      "pts": 18,
+      "pts": 19,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -212,9 +212,9 @@
       "team": "MTL"
     },
     "Ehlers": {
-      "pts": 9,
+      "pts": 11,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -430,8 +430,8 @@
       "awayW": 0,
       "home": "VGK",
       "homeAbbrev": "VGK",
-      "homeW": 0,
-      "status": "Series starting",
+      "homeW": 1,
+      "status": "VGK leads 1-0",
       "over": false
     }
   ],
