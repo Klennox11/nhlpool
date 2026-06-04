@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-03T22:59:19.212Z",
+  "lastUpdated": "2026-06-04T02:52:43.663Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -134,7 +134,7 @@
     "Marner": {
       "pts": 22,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -158,7 +158,7 @@
     "Eichel": {
       "pts": 19,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -214,7 +214,7 @@
     "Ehlers": {
       "pts": 11,
       "otPts": 2,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
