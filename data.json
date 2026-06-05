@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-05T02:40:10.442Z",
+  "lastUpdated": "2026-06-05T07:01:16.323Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -84,10 +84,10 @@
       "team": "DAL"
     },
     "Aho": {
-      "pts": 7,
-      "otPts": 0,
-      "recentPts": 0,
-      "recentOtPts": 0,
+      "pts": 8,
+      "otPts": 1,
+      "recentPts": 1,
+      "recentOtPts": 1,
       "eliminated": false,
       "team": "CAR"
     },
@@ -108,9 +108,9 @@
       "team": "TBL"
     },
     "Svechnikov": {
-      "pts": 7,
+      "pts": 8,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -132,9 +132,9 @@
       "team": "EDM"
     },
     "Marner": {
-      "pts": 22,
+      "pts": 24,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "TOR"
@@ -148,9 +148,9 @@
       "team": "PIT"
     },
     "Stone": {
-      "pts": 10,
+      "pts": 11,
       "otPts": 0,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -427,11 +427,11 @@
       "round": 4,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 0,
+      "awayW": 1,
       "home": "VGK",
       "homeAbbrev": "VGK",
       "homeW": 1,
-      "status": "VGK leads 1-0",
+      "status": "Series tied 1-1",
       "over": false
     }
   ],
