@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-12T02:46:52.468Z",
+  "lastUpdated": "2026-06-12T07:16:17.751Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -84,9 +84,9 @@
       "team": "DAL"
     },
     "Aho": {
-      "pts": 11,
+      "pts": 12,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -108,9 +108,9 @@
       "team": "TBL"
     },
     "Svechnikov": {
-      "pts": 9,
+      "pts": 11,
       "otPts": 1,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -156,9 +156,9 @@
       "team": "VGK"
     },
     "Eichel": {
-      "pts": 20,
+      "pts": 22,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 2,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -212,9 +212,9 @@
       "team": "MTL"
     },
     "Ehlers": {
-      "pts": 14,
+      "pts": 17,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 3,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -427,11 +427,11 @@
       "round": 4,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 2,
+      "awayW": 3,
       "home": "VGK",
       "homeAbbrev": "VGK",
       "homeW": 2,
-      "status": "Series tied 2-2",
+      "status": "CAR leads 3-2",
       "over": false
     }
   ],
