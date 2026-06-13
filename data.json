@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-12T22:19:17.460Z",
+  "lastUpdated": "2026-06-13T02:39:13.623Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -86,7 +86,7 @@
     "Aho": {
       "pts": 12,
       "otPts": 1,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -110,7 +110,7 @@
     "Svechnikov": {
       "pts": 11,
       "otPts": 1,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -158,7 +158,7 @@
     "Eichel": {
       "pts": 22,
       "otPts": 2,
-      "recentPts": 2,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "VGK"
@@ -214,7 +214,7 @@
     "Ehlers": {
       "pts": 17,
       "otPts": 2,
-      "recentPts": 3,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
