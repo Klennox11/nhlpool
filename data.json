@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-15T02:55:37.543Z",
+  "lastUpdated": "2026-06-15T08:53:02.813Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -152,7 +152,7 @@
       "otPts": 0,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "VGK"
     },
     "Eichel": {
@@ -160,7 +160,7 @@
       "otPts": 2,
       "recentPts": 0,
       "recentOtPts": 0,
-      "eliminated": false,
+      "eliminated": true,
       "team": "VGK"
     },
     "Thompson": {
@@ -212,9 +212,9 @@
       "team": "MTL"
     },
     "Ehlers": {
-      "pts": 17,
+      "pts": 18,
       "otPts": 2,
-      "recentPts": 0,
+      "recentPts": 1,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
@@ -427,12 +427,12 @@
       "round": 4,
       "away": "CAR",
       "awayAbbrev": "CAR",
-      "awayW": 3,
+      "awayW": 4,
       "home": "VGK",
       "homeAbbrev": "VGK",
       "homeW": 2,
-      "status": "CAR leads 3-2",
-      "over": false
+      "status": "CAR wins 4-2",
+      "over": true
     }
   ],
   "eliminatedTeams": [
@@ -449,6 +449,7 @@
     "MIN",
     "ANA",
     "MTL",
-    "COL"
+    "COL",
+    "VGK"
   ]
 }
