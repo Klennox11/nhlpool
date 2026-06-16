@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-06-15T22:58:39.077Z",
+  "lastUpdated": "2026-06-16T02:56:27.774Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -214,7 +214,7 @@
     "Ehlers": {
       "pts": 18,
       "otPts": 2,
-      "recentPts": 1,
+      "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
       "team": "CAR"
