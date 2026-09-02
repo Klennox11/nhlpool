@@ -1,7 +1,7 @@
 {
   "season": "20252026",
   "gameType": 3,
-  "lastUpdated": "2026-09-02T13:07:12.663Z",
+  "lastUpdated": "2026-09-02T18:17:23.421Z",
   "players": {
     "McDavid": {
       "pts": 6,
@@ -53,7 +53,7 @@
     },
     "Necas": {
       "pts": 13,
-      "otPts": 0,
+      "otPts": 1,
       "recentPts": 0,
       "recentOtPts": 0,
       "eliminated": false,
